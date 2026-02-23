@@ -1,0 +1,123 @@
+---
+interface Props {
+  role: string;
+  company: string;
+  companyUrl?: string;
+  startDate: Date;
+  endDate?: Date;
+  location?: string;
+  type?: string;
+}
+
+const { role, company, companyUrl, startDate, endDate, location, type } = Astro.props;
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+}
+
+const dateRange = `${formatDate(startDate)} — ${endDate ? formatDate(endDate) : 'Present'}`;
+---
+
+<article class="timeline-item">
+  <div class="timeline-item__marker" aria-hidden="true"></div>
+  <div class="timeline-item__content">
+    <h3 class="timeline-item__role">{role}</h3>
+    <p class="timeline-item__company">
+      {
+        companyUrl ? (
+          <a href={companyUrl} target="_blank" rel="noopener noreferrer">
+            {company}
+          </a>
+        ) : (
+          company
+        )
+      }
+      {location && <span class="timeline-item__location"> &middot; {location}</span>}
+      {type && <span class="timeline-item__type"> &middot; {type}</span>}
+    </p>
+    <time class="timeline-item__date">{dateRange}</time>
+    <div class="timeline-item__body">
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    gap: var(--spacing-md);
+    padding-block-end: var(--spacing-lg);
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: calc(0.5rem - 1px);
+    top: 1.5rem;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-border);
+  }
+
+  .timeline-item__marker {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    background-color: var(--color-bg);
+    margin-top: 0.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-item__role {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    color: var(--color-text);
+    margin-block-end: var(--spacing-xs);
+  }
+
+  .timeline-item__company {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin-block-end: var(--spacing-xs);
+  }
+
+  .timeline-item__company a {
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .timeline-item__company a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .timeline-item__location,
+  .timeline-item__type {
+    color: var(--color-text-muted);
+  }
+
+  .timeline-item__date {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-block-end: var(--spacing-sm);
+  }
+
+  .timeline-item__body {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .timeline-item__body :global(ul) {
+    padding-inline-start: 1.25rem;
+    list-style: disc;
+  }
+
+  .timeline-item__body :global(li) {
+    margin-block-end: var(--spacing-xs);
+  }
+</style>

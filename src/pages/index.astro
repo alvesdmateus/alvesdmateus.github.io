@@ -1,0 +1,476 @@
+---
+import SelectorLayout from '@layouts/SelectorLayout.astro';
+import { getCollection } from 'astro:content';
+import siteData from '@data/site.json';
+
+const socialLinks = await getCollection('social');
+---
+
+<SelectorLayout
+  title="Mateus Alves — Choose Your Path"
+  description="Mateus Alves — Mobile Developer & Site Reliability Engineer. Choose your path to explore the portfolio."
+>
+  <div class="selector" role="main">
+    <!-- Left panel: Mobile Developer -->
+    <a href="/mobile" class="selector__panel selector__panel--mobile" aria-label="Enter Mobile Developer portfolio">
+      <div class="selector__panel-content">
+        <div class="selector__illustration-wrap" aria-hidden="true">
+          <svg viewBox="0 0 320 240" width="320" height="240" xmlns="http://www.w3.org/2000/svg" class="selector__illustration-svg">
+            <defs>
+              <radialGradient id="mob-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b6cc2" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#3b6cc2" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Radial glow behind phone -->
+            <ellipse cx="190" cy="120" rx="115" ry="108" fill="url(#mob-glow)"/>
+
+            <!-- Glowing card / highlight area -->
+            <rect x="128" y="28" width="120" height="188" rx="18"
+                  fill="#0f2040" stroke="rgba(59,130,246,0.22)" stroke-width="1.5"
+                  filter="url(#card-blur)"/>
+
+            <!-- Phone body -->
+            <rect x="142" y="38" width="92" height="168" rx="14"
+                  fill="#111e33" stroke="rgba(99,150,220,0.25)" stroke-width="1"/>
+
+            <!-- Speaker pill (top) -->
+            <rect x="171" y="50" width="34" height="5" rx="2.5" fill="rgba(148,163,184,0.25)"/>
+
+            <!-- Camera dot -->
+            <circle cx="212" cy="52" r="3" fill="rgba(148,163,184,0.2)" stroke="rgba(148,163,184,0.15)" stroke-width="0.75"/>
+
+            <!-- Screen -->
+            <rect x="150" y="64" width="76" height="112" rx="6" fill="#1a56db"/>
+
+            <!-- Screen content — app grid icons (3×3 grid of rounded squares) -->
+            <g fill="rgba(255,255,255,0.18)">
+              <!-- Row 1 -->
+              <rect x="157" y="72" width="18" height="18" rx="4"/>
+              <rect x="179" y="72" width="18" height="18" rx="4"/>
+              <rect x="201" y="72" width="18" height="18" rx="4"/>
+              <!-- Row 2 -->
+              <rect x="157" y="95" width="18" height="18" rx="4"/>
+              <rect x="179" y="95" width="18" height="18" rx="4"/>
+              <rect x="201" y="95" width="18" height="18" rx="4"/>
+              <!-- Row 3 (partial — bottom shelf) -->
+              <rect x="157" y="118" width="18" height="18" rx="4"/>
+              <rect x="179" y="118" width="18" height="18" rx="4"/>
+              <rect x="201" y="118" width="18" height="18" rx="4"/>
+            </g>
+
+            <!-- Status bar line (top of screen) -->
+            <rect x="150" y="64" width="76" height="10" rx="0" fill="rgba(0,0,0,0.2)"/>
+            <rect x="150" y="64" width="76" height="10" rx="0" rx="6" fill="rgba(0,0,0,0.1)"/>
+
+            <!-- Dock area (below app grid) -->
+            <rect x="157" y="145" width="62" height="22" rx="6" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
+            <g fill="rgba(255,255,255,0.2)">
+              <rect x="162" y="150" width="10" height="10" rx="3"/>
+              <rect x="177" y="150" width="10" height="10" rx="3"/>
+              <rect x="192" y="150" width="10" height="10" rx="3"/>
+            </g>
+
+            <!-- Home indicator bar -->
+            <rect x="168" y="175" width="40" height="3" rx="1.5" fill="rgba(148,163,184,0.3)"/>
+
+            <!-- Side buttons (volume) -->
+            <rect x="141" y="82" width="2.5" height="14" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+            <rect x="141" y="100" width="2.5" height="14" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+            <!-- Power button -->
+            <rect x="232.5" y="90" width="2.5" height="18" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+
+            <!-- Small decorative dots (left side of illustration) -->
+            <g fill="rgba(59,130,246,0.18)">
+              <circle cx="60" cy="70" r="3"/>
+              <circle cx="75" cy="90" r="2"/>
+              <circle cx="50" cy="110" r="2.5"/>
+              <circle cx="85" cy="130" r="1.5"/>
+              <circle cx="65" cy="155" r="3"/>
+            </g>
+            <!-- Horizontal accent lines (left) -->
+            <g stroke="rgba(59,130,246,0.1)" stroke-width="1">
+              <line x1="40" y1="78" x2="110" y2="78"/>
+              <line x1="40" y1="120" x2="110" y2="120"/>
+              <line x1="40" y1="162" x2="110" y2="162"/>
+            </g>
+          </svg>
+        </div>
+        <div class="selector__text">
+          <h2 class="selector__title">Mobile<br />Developer</h2>
+          <p class="selector__description">
+            Crafting intuitive user experiences for iOS &amp; Android with Flutter and React Native.
+          </p>
+          <span class="selector__cta" aria-hidden="true">
+            Enter Mobile Portfolio <span class="selector__cta-arrow">→</span>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Center divider -->
+    <div class="selector__divider" aria-hidden="true">
+      <span class="selector__divider-text">CHOOSE YOUR PATH</span>
+    </div>
+
+    <!-- Right panel: Site Reliability Engineer -->
+    <a href="/sre" class="selector__panel selector__panel--sre" aria-label="Enter Site Reliability Engineer portfolio">
+      <div class="selector__panel-content">
+        <div class="selector__illustration-wrap" aria-hidden="true">
+          <svg viewBox="0 0 320 240" width="320" height="240" xmlns="http://www.w3.org/2000/svg" class="selector__illustration-svg">
+            <defs>
+              <radialGradient id="sre-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#2d5299" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#2d5299" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Radial glow -->
+            <ellipse cx="138" cy="120" rx="120" ry="108" fill="url(#sre-glow)"/>
+
+            <!-- Glowing card (terminal window) -->
+            <rect x="32" y="36" width="210" height="168" rx="8"
+                  fill="#0d1117" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+
+            <!-- Terminal title bar -->
+            <rect x="32" y="36" width="210" height="22" rx="8" fill="#161b22"/>
+            <rect x="32" y="47" width="210" height="11" fill="#161b22"/>
+            <!-- Traffic light dots -->
+            <circle cx="50" cy="47" r="4" fill="#ef4444" opacity="0.8"/>
+            <circle cx="63" cy="47" r="4" fill="#f59e0b" opacity="0.8"/>
+            <circle cx="76" cy="47" r="4" fill="#10b981" opacity="0.8"/>
+            <!-- Title text -->
+            <rect x="100" y="43" width="60" height="8" rx="2" fill="rgba(148,163,184,0.12)"/>
+
+            <!-- Terminal content lines -->
+            <!-- Line 1: prompt + command -->
+            <rect x="46" y="72" width="12" height="6" rx="1" fill="rgba(100,116,139,0.5)"/>
+            <rect x="62" y="72" width="80" height="6" rx="1" fill="rgba(226,232,240,0.5)"/>
+
+            <!-- Line 2: key-value (NAME) -->
+            <rect x="46" y="85" width="28" height="6" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="78" y="85" width="55" height="6" rx="1" fill="rgba(6,182,212,0.6)"/>
+
+            <!-- Line 3: key-value (STATUS) -->
+            <rect x="46" y="98" width="34" height="6" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="84" y="98" width="40" height="6" rx="1" fill="rgba(16,185,129,0.7)"/>
+
+            <!-- Line 4: RESOURCES -->
+            <rect x="46" y="112" width="60" height="6" rx="1" fill="rgba(226,232,240,0.35)"/>
+
+            <!-- Lines 5-8: [OK] items -->
+            <g fill="rgba(16,185,129,0.6)">
+              <rect x="54" y="124" width="16" height="5" rx="1"/>
+              <rect x="54" y="135" width="16" height="5" rx="1"/>
+              <rect x="54" y="146" width="16" height="5" rx="1"/>
+              <rect x="54" y="157" width="16" height="5" rx="1"/>
+            </g>
+            <g fill="rgba(226,232,240,0.35)">
+              <rect x="74" y="124" width="95" height="5" rx="1"/>
+              <rect x="74" y="135" width="80" height="5" rx="1"/>
+              <rect x="74" y="146" width="72" height="5" rx="1"/>
+              <rect x="74" y="157" width="88" height="5" rx="1"/>
+            </g>
+
+            <!-- Cursor -->
+            <rect x="46" y="172" width="8" height="10" rx="1" fill="rgba(37,99,235,0.8)">
+              <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+            </rect>
+
+            <!-- Right decorative panel (mini metrics) -->
+            <rect x="255" y="60" width="52" height="120" rx="6"
+                  fill="rgba(13,18,26,0.7)" stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
+
+            <!-- Metric labels + bars -->
+            <rect x="261" y="70" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="78" width="32" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="87" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="87" width="34" height="3" rx="1" fill="rgba(37,99,235,0.7)"/>
+
+            <rect x="261" y="100" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="108" width="28" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="117" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="117" width="36" height="3" rx="1" fill="rgba(16,185,129,0.7)"/>
+
+            <rect x="261" y="130" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="138" width="24" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="147" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="147" width="30" height="3" rx="1" fill="rgba(6,182,212,0.65)"/>
+
+            <rect x="261" y="160" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="168" width="20" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+
+            <!-- Decorative dots right -->
+            <g fill="rgba(37,99,246,0.18)">
+              <circle cx="270" cy="194" r="2.5"/>
+              <circle cx="280" cy="200" r="1.5"/>
+              <circle cx="292" cy="196" r="2"/>
+            </g>
+          </svg>
+        </div>
+        <div class="selector__text">
+          <h2 class="selector__title">Site Reliability<br />Engineer</h2>
+          <p class="selector__description">
+            Scaling infrastructure and ensuring 99.9% uptime with Kubernetes and Terraform.
+          </p>
+          <span class="selector__cta" aria-hidden="true">
+            Enter SRE Portfolio <span class="selector__cta-icon">⊞</span>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Bottom social bar -->
+    <nav class="selector__social" aria-label="Social links">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${link.data.platform} profile`}
+            class="selector__social-link"
+          >
+            {link.data.platform}
+          </a>
+        ))
+      }
+      <a
+        href={`mailto:${siteData.email}`}
+        class="selector__social-link"
+        aria-label="Send an email"
+      >
+        Contact
+      </a>
+    </nav>
+  </div>
+</SelectorLayout>
+
+<style>
+  /* ===== Selector grid ===== */
+  .selector {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100dvh;
+  }
+
+  /* ===== Panels ===== */
+  .selector__panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem 8rem;
+    text-decoration: none;
+    color: #e2e8f0;
+    transition: opacity 350ms ease, background-color 350ms ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .selector__panel--mobile {
+    background: radial-gradient(ellipse at 65% 42%, #1d3f6a 0%, #0d1b2a 62%);
+  }
+
+  .selector__panel--sre {
+    background: radial-gradient(ellipse at 38% 44%, #1a2e52 0%, #111827 62%);
+  }
+
+  /* Dim the sibling panel on hover using :has() */
+  .selector:has(.selector__panel--mobile:hover) .selector__panel--sre {
+    opacity: 0.45;
+  }
+
+  .selector:has(.selector__panel--sre:hover) .selector__panel--mobile {
+    opacity: 0.45;
+  }
+
+  /* Subtle highlight on the hovered panel */
+  .selector__panel--mobile:hover {
+    background: radial-gradient(ellipse at 65% 42%, #224876 0%, #0e2033 62%);
+  }
+
+  .selector__panel--sre:hover {
+    background: radial-gradient(ellipse at 38% 44%, #1e3660 0%, #131e30 62%);
+  }
+
+  /* Focus visible */
+  .selector__panel:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -4px;
+    opacity: 1 !important;
+  }
+
+  /* ===== Panel content ===== */
+  .selector__panel-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 26rem;
+  }
+
+  /* ===== Illustration ===== */
+  .selector__illustration-wrap {
+    width: 100%;
+  }
+
+  .selector__illustration-svg {
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+    overflow: visible;
+  }
+
+  /* ===== Text ===== */
+  .selector__text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .selector__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+  }
+
+  .selector__description {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: #94a3b8;
+    line-height: 1.6;
+    max-width: 22rem;
+  }
+
+  /* ===== CTA button ===== */
+  .selector__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    white-space: nowrap;
+    box-shadow:
+      0 0 12px rgba(59, 130, 246, 0.55),
+      0 0 28px rgba(59, 130, 246, 0.25),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .selector__panel:hover .selector__cta {
+    background-color: #1d4ed8;
+    transform: translateX(2px);
+    box-shadow:
+      0 0 18px rgba(59, 130, 246, 0.75),
+      0 0 40px rgba(59, 130, 246, 0.35),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .selector__cta-arrow,
+  .selector__cta-icon {
+    font-style: normal;
+  }
+
+  /* ===== Center divider ===== */
+  .selector__divider {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .selector__divider::before,
+  .selector__divider::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 5rem;
+    background: rgba(226, 232, 240, 0.15);
+  }
+
+  .selector__divider-text {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: rgba(226, 232, 240, 0.35);
+    writing-mode: horizontal-tb;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.15);
+    border-radius: 0.25rem;
+  }
+
+  /* ===== Social bar ===== */
+  .selector__social {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .selector__social-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(148, 163, 184, 0.7);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 150ms ease;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .selector__social-link:hover {
+    color: #e2e8f0;
+  }
+
+  /* ===== Mobile responsive ===== */
+  @media (max-width: 767px) {
+    .selector {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .selector__panel {
+      padding: 4rem 2rem 6rem;
+      min-height: 50dvh;
+    }
+
+    .selector__divider {
+      display: none;
+    }
+
+    .selector__social {
+      position: static;
+      transform: none;
+      justify-content: center;
+      padding: 1.5rem;
+      background: #0d1b2a;
+      grid-column: 1;
+    }
+
+    .selector__title {
+      font-size: clamp(1.75rem, 8vw, 2.5rem);
+    }
+  }
+</style>

@@ -1,0 +1,8 @@
+[
+  { "id": "react-native", "name": "React Native", "subtitle": "Cross-platform",  "icon": "react"      },
+  { "id": "expo",         "name": "Expo",         "subtitle": "Mobile toolkit",  "icon": "expo"       },
+  { "id": "typescript",   "name": "TypeScript",   "subtitle": "Type-safe JS",    "icon": "typescript" },
+  { "id": "nodejs",       "name": "Node.js",      "subtitle": "API & runtime",   "icon": "nodejs"     },
+  { "id": "python",       "name": "Python",       "subtitle": "Scripting & AI",  "icon": "python"     },
+  { "id": "go",           "name": "Go",           "subtitle": "Systems & CLI",   "icon": "go"         }
+]

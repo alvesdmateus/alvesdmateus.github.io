@@ -1,0 +1,373 @@
+---
+import sreSkills from '@data/sre-skills.json';
+
+function barColor(score: number): string {
+  if (score === 5) return '#2563eb';
+  if (score >= 4) return '#10b981';
+  return '#f59e0b';
+}
+
+const allSkillsFlat = sreSkills
+  .flatMap((cat) => cat.items.map((item) => ({ ...item, category: cat.category })))
+  .sort((a, b) => b.score - a.score);
+---
+
+<section id="stack" class="inventory">
+  <div class="inventory__container">
+    <!-- Header row -->
+    <div class="inventory__header">
+      <div>
+        <h2 class="inventory__title">
+          <span class="inventory__title-icon" aria-hidden="true">✦</span>
+          TECHNICAL INVENTORY
+        </h2>
+        <p class="inventory__subtitle">Resource allocation and technology proficiency.</p>
+      </div>
+      <div class="inventory__toggle" role="group" aria-label="View mode">
+        <button class="inventory__toggle-btn active" data-view-btn="grid" aria-pressed="true">
+          GRID_VIEW
+        </button>
+        <button class="inventory__toggle-btn" data-view-btn="list" aria-pressed="false">
+          LIST_VIEW
+        </button>
+      </div>
+    </div>
+
+    <!-- Grid view (default) -->
+    <div class="inventory__content" data-inventory="grid">
+      <!-- GRID -->
+      <div class="inventory__grid" data-view-panel="grid">
+        {
+          sreSkills.map((cat) => (
+            <div class="inv-col">
+              <h3 class="inv-col__header">
+                <span class="inv-col__num">0{cat.order}.</span> {cat.category.toUpperCase()}
+              </h3>
+              {cat.items.map((item) => (
+                <div class="inv-col__skill">
+                  <div class="inv-col__skill-row">
+                    <span class="inv-col__skill-name">{item.name}</span>
+                    <span class="inv-col__skill-pct" style={`color: ${barColor(item.score)}`}>
+                      {item.score}
+                    </span>
+                  </div>
+                  <div class="inv-col__dashes" role="img" aria-label={`${item.name}: ${item.score} out of 5`}>
+                    {[0,1,2,3,4].map((i) => (
+                      <span
+                        class="inv-col__dash"
+                        style={i < item.score ? `background-color: ${barColor(item.score)}` : undefined}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- LIST -->
+      <div class="inventory__list" data-view-panel="list" hidden>
+        <table class="inv-list__table">
+          <thead>
+            <tr>
+              <th class="inv-list__th">Skill</th>
+              <th class="inv-list__th">Category</th>
+              <th class="inv-list__th inv-list__th--right">Proficiency</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              allSkillsFlat.map((skill) => (
+                <tr class="inv-list__row">
+                  <td class="inv-list__td inv-list__td--name">{skill.name}</td>
+                  <td class="inv-list__td">
+                    <span class="inv-list__tag">{skill.category}</span>
+                  </td>
+                  <td class="inv-list__td inv-list__td--right">
+                    <div class="inv-list__pct-wrap">
+                      <span class="inv-list__pct-num" style={`color: ${barColor(skill.score)}`}>
+                        {skill.score}
+                      </span>
+                      <div class="inv-list__dashes" role="img" aria-label={`${skill.name}: ${skill.score} out of 5`}>
+                        {[0,1,2,3,4].map((i) => (
+                          <span
+                            class="inv-list__dash"
+                            style={i < skill.score ? `background-color: ${barColor(skill.score)}` : undefined}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>('[data-view-btn]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-view-panel]');
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const view = btn.dataset.viewBtn as string;
+
+      // Update button states
+      btns.forEach((b) => {
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+
+      // Show/hide panels
+      panels.forEach((panel) => {
+        if (panel.dataset.viewPanel === view) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .inventory {
+    background-color: var(--sre-surface);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--sre-border);
+    border-bottom: 1px solid var(--sre-border);
+  }
+
+  .inventory__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* Header row */
+  .inventory__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .inventory__title {
+    font-family: var(--sre-mono);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--sre-text);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .inventory__title-icon {
+    color: var(--sre-primary);
+  }
+
+  .inventory__subtitle {
+    font-size: 0.875rem;
+    color: var(--sre-muted);
+    margin-top: 0.25rem;
+  }
+
+  /* Toggle buttons */
+  .inventory__toggle {
+    display: flex;
+    gap: 0.25rem;
+    border: 1px solid var(--sre-border);
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .inventory__toggle-btn {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.375rem 0.75rem;
+    border: none;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--sre-muted);
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+  }
+
+  .inventory__toggle-btn.active,
+  .inventory__toggle-btn:hover {
+    background-color: var(--sre-primary);
+    color: #ffffff;
+  }
+
+  [hidden] { display: none !important; }
+
+  /* Grid view */
+  .inventory__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
+
+  .inv-col__header {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--sre-cyan);
+    margin-bottom: 1.25rem;
+  }
+
+  .inv-col__num {
+    color: var(--sre-muted);
+  }
+
+  .inv-col__skill {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .inv-col__skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .inv-col__skill-name {
+    font-size: 0.8125rem;
+    color: var(--sre-text);
+  }
+
+  .inv-col__skill-pct {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+  }
+
+  .inv-col__dashes {
+    display: flex;
+    gap: 3px;
+  }
+
+  .inv-col__dash {
+    flex: 1;
+    height: 3px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* List view */
+  .inv-list__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .inv-list__th {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--sre-muted);
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--sre-border);
+  }
+
+  .inv-list__th--right { text-align: right; }
+
+  .inv-list__row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background-color 150ms ease;
+  }
+
+  .inv-list__row:hover {
+    background-color: rgba(59, 130, 246, 0.04);
+  }
+
+  .inv-list__td {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--sre-text);
+    vertical-align: middle;
+  }
+
+  .inv-list__td--name {
+    font-weight: 600;
+  }
+
+  .inv-list__td--right {
+    text-align: right;
+  }
+
+  .inv-list__tag {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    color: var(--sre-cyan);
+    background-color: rgba(6, 182, 212, 0.08);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .inv-list__pct-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+
+  .inv-list__pct-num {
+    font-family: var(--sre-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .inv-list__dashes {
+    display: flex;
+    gap: 3px;
+    width: 8rem;
+  }
+
+  .inv-list__dash {
+    flex: 1;
+    height: 3px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Responsive */
+  @media (max-width: 1280px) {
+    .inventory__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .inventory__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .inventory__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .inv-list__dashes {
+      width: 4rem;
+    }
+  }
+</style>

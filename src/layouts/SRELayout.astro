@@ -1,0 +1,236 @@
+---
+import BaseHead from '@components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const navLinks = [
+  { label: '/WHOAMI', href: '#whoami' },
+  { label: '/STACK', href: '#stack' },
+  { label: '/REGISTRY', href: '#clusters' },
+  { label: '/CONTACT', href: '#contact' },
+];
+---
+
+<!doctype html>
+<html lang="en" data-theme="sre">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="sre-body">
+    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+
+    <header class="sre-header">
+      <a href="/" class="sre-header__logo" aria-label="Back to portfolio selection">
+        <span class="sre-header__logo-icon" aria-hidden="true">⊡</span>
+        <span class="sre-header__logo-text">root@infra-portfolio:~#</span>
+        <span class="sre-header__logo-cursor" aria-hidden="true">_</span>
+      </a>
+
+      <nav class="sre-header__nav" aria-label="SRE portfolio navigation">
+        <ul class="sre-header__links" role="list">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="sre-header__link">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="sre-header__right">
+        <span class="sre-header__status" aria-label="System status: healthy">
+          <span class="sre-header__status-dot" aria-hidden="true"></span>
+          SYSTEM: HEALTHY
+        </span>
+        <a href="/" class="sre-header__grid-icon" aria-label="Back to selector">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
+            <rect x="10" y="1" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
+            <rect x="1" y="10" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
+            <rect x="10" y="10" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  [data-theme="sre"] {
+    --sre-bg: #080d1a;
+    --sre-surface: #0f1629;
+    --sre-card: #131c2e;
+    --sre-border: rgba(59, 130, 246, 0.12);
+    --sre-border-bright: rgba(59, 130, 246, 0.25);
+    --sre-text: #e2e8f0;
+    --sre-muted: #64748b;
+    --sre-muted-bright: #94a3b8;
+    --sre-primary: #2563eb;
+    --sre-primary-hover: #1d4ed8;
+    --sre-green: #10b981;
+    --sre-cyan: #06b6d4;
+    --sre-yellow: #f59e0b;
+    --sre-red: #ef4444;
+    --sre-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  }
+</style>
+
+<style>
+  .sre-body {
+    background-color: var(--sre-bg);
+    color: var(--sre-text);
+    font-family: var(--font-body);
+    min-height: 100dvh;
+  }
+
+  /* ===== Header ===== */
+  .sre-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.5rem;
+    background-color: rgba(8, 13, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sre-border);
+  }
+
+  /* Logo */
+  .sre-header__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    text-decoration: none;
+    font-family: var(--sre-mono);
+    font-size: 0.8125rem;
+    color: var(--sre-text);
+    white-space: nowrap;
+  }
+
+  .sre-header__logo-icon {
+    color: var(--sre-primary);
+    font-size: 1rem;
+  }
+
+  .sre-header__logo-cursor {
+    color: var(--sre-primary);
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .sre-header__logo:hover .sre-header__logo-text {
+    color: #ffffff;
+  }
+
+  /* Nav */
+  .sre-header__nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .sre-header__links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sre-header__link {
+    font-family: var(--sre-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--sre-muted);
+    text-decoration: none;
+    padding: 0.375rem 0.625rem;
+    border-radius: 0.25rem;
+    letter-spacing: 0.02em;
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .sre-header__link:hover {
+    color: var(--sre-text);
+    background-color: rgba(59, 130, 246, 0.08);
+  }
+
+  /* Right: status + grid */
+  .sre-header__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sre-header__status {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--sre-green);
+    padding: 0.25rem 0.625rem;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 9999px;
+  }
+
+  .sre-header__status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--sre-green);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+
+  .sre-header__grid-icon {
+    color: var(--sre-muted);
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: color 150ms ease;
+  }
+
+  .sre-header__grid-icon:hover {
+    color: var(--sre-text);
+  }
+
+  /* Hide nav links on small screens */
+  @media (max-width: 767px) {
+    .sre-header__nav {
+      display: none;
+    }
+
+    .sre-header__status {
+      font-size: 0.625rem;
+      padding: 0.2rem 0.5rem;
+    }
+  }
+</style>

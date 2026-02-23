@@ -1,0 +1,5 @@
+[
+  { "id": "languages", "category": "Languages", "items": ["TypeScript", "JavaScript", "Python"] },
+  { "id": "frameworks", "category": "Frameworks", "items": ["Astro", "React", "Node.js"] },
+  { "id": "tools", "category": "Tools & Platforms", "items": ["Docker", "Git", "GitHub Actions"] }
+]

@@ -1,0 +1,57 @@
+---
+import BaseHead from '@components/BaseHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body class="selector-body">
+    <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+    <header class="selector-header">
+      <a href="/" class="selector-header__logo">Portfolio</a>
+    </header>
+    <main id="main-content">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  .selector-body {
+    background-color: #0d1b2a;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  .selector-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .selector-header__logo {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #e2e8f0;
+    letter-spacing: 0.05em;
+  }
+
+  .selector-header__logo:hover {
+    color: #ffffff;
+  }
+</style>

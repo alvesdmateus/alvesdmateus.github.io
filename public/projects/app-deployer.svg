@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <linearGradient id="ad-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0f1629"/>
+    </linearGradient>
+    <linearGradient id="ad-bar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="200" fill="url(#ad-bg)"/>
+
+  <!-- Title bar -->
+  <rect width="400" height="28" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="12" cy="14" r="4" fill="#ef4444" opacity="0.8"/>
+  <circle cx="24" cy="14" r="4" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="36" cy="14" r="4" fill="#10b981" opacity="0.8"/>
+  <text x="54" y="19" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.4)">app-deployer — deployment pipeline</text>
+
+  <!-- Pipeline stages -->
+  <!-- Stage 1: Analyse -->
+  <rect x="20" y="44" width="68" height="52" rx="6" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
+  <text x="54" y="63" font-family="monospace" font-size="8" fill="#60a5fa" text-anchor="middle" font-weight="700">ANALYSE</text>
+  <text x="54" y="75" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Go · Node</text>
+  <text x="54" y="86" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Python · Java</text>
+  <circle cx="54" cy="96" r="4" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="1"/>
+  <text x="54" y="99" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">✓</text>
+
+  <!-- Arrow -->
+  <path d="M88,70 L102,70" stroke="rgba(37,99,235,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="100,66 106,70 100,74" fill="rgba(37,99,235,0.5)"/>
+
+  <!-- Stage 2: Build -->
+  <rect x="106" y="44" width="68" height="52" rx="6" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
+  <text x="140" y="63" font-family="monospace" font-size="8" fill="#60a5fa" text-anchor="middle" font-weight="700">BUILD</text>
+  <text x="140" y="75" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Docker</text>
+  <text x="140" y="86" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Container</text>
+  <!-- Build progress bar -->
+  <rect x="116" y="92" width="48" height="4" rx="2" fill="rgba(255,255,255,0.07)"/>
+  <rect x="116" y="92" width="38" height="4" rx="2" fill="url(#ad-bar)"/>
+
+  <!-- Arrow -->
+  <path d="M174,70 L188,70" stroke="rgba(37,99,235,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="186,66 192,70 186,74" fill="rgba(37,99,235,0.5)"/>
+
+  <!-- Stage 3: Provision -->
+  <rect x="192" y="44" width="68" height="52" rx="6" fill="rgba(37,99,235,0.12)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
+  <text x="226" y="63" font-family="monospace" font-size="8" fill="#60a5fa" text-anchor="middle" font-weight="700">PROVISION</text>
+  <text x="226" y="75" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Infra</text>
+  <text x="226" y="86" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Network</text>
+  <circle cx="226" cy="96" r="4" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="1"/>
+  <text x="226" y="99" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">✓</text>
+
+  <!-- Arrow -->
+  <path d="M260,70 L274,70" stroke="rgba(37,99,235,0.5)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <polygon points="272,66 278,70 272,74" fill="rgba(37,99,235,0.5)"/>
+
+  <!-- Stage 4: Deploy -->
+  <rect x="278" y="44" width="68" height="52" rx="6" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.35)" stroke-width="1"/>
+  <text x="312" y="63" font-family="monospace" font-size="8" fill="#34d399" text-anchor="middle" font-weight="700">DEPLOY</text>
+  <text x="312" y="75" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Kubernetes</text>
+  <text x="312" y="86" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.35)" text-anchor="middle">Expose</text>
+  <circle cx="312" cy="96" r="4" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="1.5"/>
+  <text x="312" y="99" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">✓</text>
+
+  <!-- Bottom log panel -->
+  <rect x="20" y="110" width="360" height="72" rx="5" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="28" y="124" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.25)">// deployment log</text>
+  <text x="28" y="138" font-family="monospace" font-size="8" fill="#10b981">✓  source analysed: Go 1.21, gin framework detected</text>
+  <text x="28" y="150" font-family="monospace" font-size="8" fill="#10b981">✓  image built: myapp:sha-4f2d1c8</text>
+  <text x="28" y="162" font-family="monospace" font-size="8" fill="#10b981">✓  deployment/myapp rolled out (3 replicas ready)</text>
+  <text x="28" y="174" font-family="monospace" font-size="8" fill="#60a5fa">→  service exposed on :8080 · health check passing</text>
+</svg>

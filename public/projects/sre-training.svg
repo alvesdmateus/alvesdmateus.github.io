@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
+  <defs>
+    <linearGradient id="st-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="200" fill="url(#st-bg)"/>
+
+  <!-- Title bar -->
+  <rect width="400" height="28" fill="rgba(255,255,255,0.04)"/>
+  <circle cx="12" cy="14" r="4" fill="#ef4444" opacity="0.8"/>
+  <circle cx="24" cy="14" r="4" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="36" cy="14" r="4" fill="#10b981" opacity="0.8"/>
+  <text x="54" y="19" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.4)">sre-training — kubectl get nodes</text>
+
+  <!-- Node grid -->
+  <text x="20" y="48" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.3)">CLUSTER · 3 nodes · kind</text>
+
+  <!-- Node 1 control plane -->
+  <rect x="20" y="56" width="110" height="52" rx="5" fill="rgba(37,99,235,0.1)" stroke="rgba(37,99,235,0.35)" stroke-width="1"/>
+  <text x="75" y="70" font-family="monospace" font-size="7.5" fill="#60a5fa" text-anchor="middle" font-weight="700">control-plane</text>
+  <text x="75" y="82" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">api-server · etcd</text>
+  <text x="75" y="93" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">scheduler · ctrl-mgr</text>
+  <rect x="30" y="99" width="36" height="6" rx="3" fill="rgba(16,185,129,0.2)"/>
+  <text x="48" y="104" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">Ready</text>
+
+  <!-- Node 2 worker -->
+  <rect x="144" y="56" width="96" height="52" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="192" y="70" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle" font-weight="700">worker-01</text>
+  <text x="192" y="82" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">kubelet · kube-proxy</text>
+  <text x="192" y="93" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">containerd</text>
+  <rect x="154" y="99" width="36" height="6" rx="3" fill="rgba(16,185,129,0.2)"/>
+  <text x="172" y="104" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">Ready</text>
+
+  <!-- Node 3 worker -->
+  <rect x="254" y="56" width="96" height="52" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="302" y="70" font-family="monospace" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle" font-weight="700">worker-02</text>
+  <text x="302" y="82" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">kubelet · kube-proxy</text>
+  <text x="302" y="93" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.3)" text-anchor="middle">containerd</text>
+  <rect x="264" y="99" width="36" height="6" rx="3" fill="rgba(16,185,129,0.2)"/>
+  <text x="282" y="104" font-family="monospace" font-size="6" fill="#10b981" text-anchor="middle">Ready</text>
+
+  <!-- Curriculum modules -->
+  <text x="20" y="128" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.3)">CURRICULUM PROGRESS</text>
+
+  <!-- Module bars -->
+  <text x="20" y="145" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.5)">K8s Architecture</text>
+  <rect x="130" y="138" width="140" height="7" rx="3" fill="rgba(255,255,255,0.06)"/>
+  <rect x="130" y="138" width="140" height="7" rx="3" fill="rgba(37,99,235,0.6)"/>
+  <text x="276" y="145" font-family="monospace" font-size="7" fill="#60a5fa">100%</text>
+
+  <text x="20" y="160" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.5)">Prometheus + Grafana</text>
+  <rect x="130" y="153" width="140" height="7" rx="3" fill="rgba(255,255,255,0.06)"/>
+  <rect x="130" y="153" width="112" height="7" rx="3" fill="rgba(249,115,22,0.6)"/>
+  <text x="276" y="160" font-family="monospace" font-size="7" fill="#fb923c">80%</text>
+
+  <text x="20" y="175" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.5)">Incident Response</text>
+  <rect x="130" y="168" width="140" height="7" rx="3" fill="rgba(255,255,255,0.06)"/>
+  <rect x="130" y="168" width="84" height="7" rx="3" fill="rgba(16,185,129,0.5)"/>
+  <text x="276" y="175" font-family="monospace" font-size="7" fill="#34d399">60%</text>
+
+  <!-- Module count -->
+  <text x="330" y="145" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.25)">06 / 06</text>
+  <text x="330" y="160" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.25)">04 / 05</text>
+  <text x="330" y="175" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.25)">03 / 05</text>
+
+  <text x="20" y="192" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.2)">16 modules completed · Helm, DaemonSets, Secrets, RBAC...</text>
+</svg>

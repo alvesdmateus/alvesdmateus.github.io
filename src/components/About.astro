@@ -1,0 +1,38 @@
+---
+import siteData from '@data/site.json';
+---
+
+<div class="about">
+  <div class="about__content">
+    <p class="about__text">
+      Hi, I'm <strong>{siteData.name}</strong>. I'm a {siteData.title.toLowerCase()} passionate
+      about building reliable, well-crafted software. Replace this with your actual bio — talk about
+      your background, interests, and what drives you.
+    </p>
+    <p class="about__text">
+      I enjoy working on challenging problems and creating solutions that make a real impact. When
+      I'm not coding, you'll find me exploring new technologies and contributing to open source.
+    </p>
+  </div>
+</div>
+
+<style>
+  .about {
+    max-width: 48rem;
+  }
+
+  .about__text {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-block-end: var(--spacing-md);
+  }
+
+  .about__text:last-child {
+    margin-block-end: 0;
+  }
+
+  .about__text strong {
+    color: var(--color-text);
+  }
+</style>

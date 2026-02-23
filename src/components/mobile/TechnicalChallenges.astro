@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const challenges = allProjects
+  .filter((p) => p.data.portfolioPath === 'mobile' && p.data.challenge)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const accents = ['var(--mob-primary)', 'var(--mob-teal)', '#a78bfa'];
+
+---
+
+<section id="challenges" class="challenges">
+  <div class="challenges__container">
+    <div class="challenges__header">
+      <span class="challenges__eyebrow">UNDER THE HOOD</span>
+      <h2 class="challenges__title">Engineering Challenges</h2>
+      <p class="challenges__subtitle">
+        One real problem each project had to solve.
+      </p>
+    </div>
+
+    <ul class="challenges__grid" role="list">
+      {challenges.map((project, i) => (
+        <li class="challenge-card" style={`--accent: ${accents[i % accents.length]}`}>
+          <span class="challenge-card__label">{project.data.title}</span>
+          <p class="challenge-card__body">{project.data.challenge}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .challenges {
+    background-color: var(--mob-surface);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--mob-border);
+  }
+
+  .challenges__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .challenges__eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--mob-primary);
+    margin-bottom: 0.625rem;
+  }
+
+  .challenges__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--mob-text);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .challenges__subtitle {
+    font-size: 0.9375rem;
+    color: var(--mob-muted-bright);
+    margin: 0;
+  }
+
+  /* Grid */
+  .challenges__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* Card */
+  .challenge-card {
+    background-color: var(--mob-card);
+    border: 1px solid var(--mob-border);
+    border-top: 3px solid var(--accent);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    transition: border-color 200ms ease, transform 200ms ease;
+  }
+
+  .challenge-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    border-top-color: var(--accent);
+  }
+
+  .challenge-card__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .challenge-card__body {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--mob-muted-bright);
+    margin: 0;
+    flex: 1;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .challenges__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .challenges {
+      padding: 3.5rem 1.25rem;
+    }
+  }
+</style>

@@ -1,0 +1,253 @@
+---
+// No props — content is persona-specific and hardcoded
+---
+
+<section id="whoami" class="hero">
+  <div class="hero__container">
+    <!-- Left column: text -->
+    <div class="hero__left">
+      <span class="hero__badge">v2.4.0-stable deployment</span>
+
+      <h1 class="hero__headline">
+        Architecting<br />
+        <span class="hero__headline-blue">Reliable</span> Cloud<br />
+        Systems.
+      </h1>
+
+      <p class="hero__description">
+        Specializing in Kubernetes orchestration, Service Mesh architecture, and declarative
+        Infrastructure as Code. I build systems that scale automatically and heal themselves.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#contact" class="hero__cta hero__cta--primary">
+          Get in Touch
+        </a>
+        <a href="#stack" class="hero__cta hero__cta--secondary">
+          Technical Stack
+        </a>
+      </div>
+    </div>
+
+    <!-- Right column: terminal window -->
+    <div class="hero__right" aria-label="Terminal output showing helm install deployment" role="img">
+      <div class="terminal">
+        <div class="terminal__bar">
+          <span class="terminal__dot terminal__dot--red" aria-hidden="true"></span>
+          <span class="terminal__dot terminal__dot--yellow" aria-hidden="true"></span>
+          <span class="terminal__dot terminal__dot--green" aria-hidden="true"></span>
+          <span class="terminal__title">bash — 80x24</span>
+        </div>
+        <pre class="terminal__body"><code><span class="t-muted">$ </span><span class="t-text">helm install infra-engineer ./portfolio</span>
+<span class="t-muted">NAME: </span><span class="t-cyan">infra-engineer</span>
+<span class="t-muted">LAST DEPLOYED: </span><span class="t-cyan">Tue, 17 Feb 2026 14:19:11 GMT</span>
+<span class="t-muted">NAMESPACE: </span><span class="t-text">production</span>
+<span class="t-muted">STATUS: </span><span class="t-green">deployed</span>
+
+<span class="t-text">RESOURCES:</span>
+<span class="t-muted">==&gt; </span><span class="t-text">v1/Expertise</span>
+  <span class="t-green">[OK]</span> <span class="t-text">Kubernetes (EKS/GKE/Self-Managed)</span>
+  <span class="t-green">[OK]</span> <span class="t-text">Terraform &amp; CloudFormation</span>
+  <span class="t-green">[OK]</span> <span class="t-text">Istio &amp; Linkerd Mesh</span>
+  <span class="t-green">[OK]</span> <span class="t-text">Prometheus/Grafana Stack</span>
+
+<span class="t-text">NOTES:</span>
+<span class="t-muted">The infrastructure is now live. High availability
+is guaranteed by 5+ years of production experience.</span>
+
+<span class="t-muted">root@infra:~# </span><span class="terminal__cursor" aria-hidden="true">▌</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 2rem 2rem;
+    background-color: var(--sre-bg);
+  }
+
+  .hero__container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* ===== Left ===== */
+  .hero__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--sre-green);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.25rem;
+    width: fit-content;
+  }
+
+  .hero__headline {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--sre-text);
+  }
+
+  .hero__headline-blue {
+    color: var(--sre-primary);
+  }
+
+  .hero__description {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.7;
+    color: var(--sre-muted-bright);
+    max-width: 34rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+  }
+
+  .hero__cta--primary {
+    background-color: var(--sre-primary);
+    color: #ffffff;
+  }
+
+  .hero__cta--primary:hover {
+    background-color: var(--sre-primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .hero__cta--secondary {
+    background-color: transparent;
+    color: var(--sre-text);
+    border: 1px solid var(--sre-border-bright);
+  }
+
+  .hero__cta--secondary:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    background-color: rgba(59, 130, 246, 0.06);
+    transform: translateY(-1px);
+  }
+
+  /* ===== Terminal ===== */
+  .terminal {
+    background-color: #0d1117;
+    border: 1px solid var(--sre-border-bright);
+    border-radius: 0.625rem;
+    overflow: hidden;
+    font-family: var(--sre-mono);
+    font-size: 0.8125rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.08);
+  }
+
+  .terminal__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    background-color: #161b22;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .terminal__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .terminal__dot--red { background-color: #ef4444; }
+  .terminal__dot--yellow { background-color: #f59e0b; }
+  .terminal__dot--green { background-color: #10b981; }
+
+  .terminal__title {
+    margin-left: 0.5rem;
+    font-size: 0.6875rem;
+    color: rgba(148, 163, 184, 0.5);
+    letter-spacing: 0.03em;
+  }
+
+  .terminal__body {
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+
+  .terminal__body code {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  /* Terminal text colors */
+  .t-text { color: #e2e8f0; }
+  .t-muted { color: #64748b; }
+  .t-cyan { color: #06b6d4; }
+  .t-green { color: #10b981; }
+
+  /* Cursor blink */
+  .terminal__cursor {
+    color: var(--sre-primary);
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1023px) {
+    .hero__container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero {
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 6rem;
+    }
+
+    .terminal__body {
+      font-size: 0.6875rem;
+      padding: 1rem;
+    }
+  }
+</style>

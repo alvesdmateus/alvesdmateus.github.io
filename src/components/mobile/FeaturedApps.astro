@@ -1,0 +1,102 @@
+---
+import { getCollection } from 'astro:content';
+import AppCard from './AppCard.astro';
+
+const allProjects = await getCollection('projects');
+const mobileProjects = allProjects
+  .filter((p) => p.data.portfolioPath === 'mobile')
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+---
+
+<section id="projects" class="featured">
+  <div class="featured__container">
+    <!-- Header -->
+    <div class="featured__header">
+      <span class="featured__eyebrow">PORTFOLIO</span>
+      <h2 class="featured__title">Featured Apps</h2>
+      <p class="featured__subtitle">
+        A selection of mobile products crafted with performance and user experience at their core.
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="featured__grid">
+      {
+        mobileProjects.map((project) => (
+          <AppCard
+            title={project.data.title}
+            description={project.data.description}
+            techStack={project.data.techStack}
+            image={project.data.image}
+            repoUrl={project.data.repoUrl}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured {
+    background-color: var(--mob-bg);
+    padding: 5rem 2rem;
+  }
+
+  .featured__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Header */
+  .featured__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .featured__eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--mob-primary);
+  }
+
+  .featured__title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--mob-text);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .featured__subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--mob-muted-bright);
+    max-width: 44rem;
+  }
+
+  /* Grid */
+  .featured__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1023px) {
+    .featured__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .featured__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,375 @@
+---
+import { getCollection } from 'astro:content';
+import siteData from '@data/site.json';
+
+const socialLinks = await getCollection('social');
+const currentYear = new Date().getFullYear();
+---
+
+<section id="contact" class="comms">
+  <div class="comms__container">
+    <div class="comms__card">
+      <!-- Left: info -->
+      <div class="comms__left">
+        <h2 class="comms__title">OPEN COMMUNICATION PORT</h2>
+        <p class="comms__description">
+          Ready to scale your infrastructure? Drop a message to establish a handshake. I&apos;m
+          usually available for high-impact architecture consultations.
+        </p>
+
+        <ul class="comms__info" role="list">
+          <li class="comms__info-item">
+            <span class="comms__info-icon" aria-hidden="true">@</span>
+            <a href={`mailto:${siteData.email}`} class="comms__info-link">
+              {siteData.email}
+            </a>
+          </li>
+          <li class="comms__info-item">
+            <span class="comms__info-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </span>
+            <span>Distributed / Remote (GMT-3)</span>
+          </li>
+          {
+            socialLinks
+              .filter((s) => s.data.platform.toLowerCase() === 'linkedin')
+              .map((s) => (
+                <li class="comms__info-item">
+                  <span class="comms__info-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </span>
+                  <a
+                    href={s.data.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="comms__info-link"
+                    aria-label="Visit LinkedIn profile"
+                  >
+                    {s.data.url.replace('https://', '')}
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </div>
+
+      <!-- Right: form -->
+      <div class="comms__right">
+        <form
+          class="comms__form"
+          action={`mailto:${siteData.email}`}
+          method="POST"
+          enctype="text/plain"
+          aria-label="Contact form"
+        >
+          <div class="comms__field">
+            <label class="comms__label" for="sre-name">SOURCE NAME</label>
+            <input
+              id="sre-name"
+              name="name"
+              type="text"
+              class="comms__input"
+              placeholder="guest_user"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="comms__field">
+            <label class="comms__label" for="sre-email">RETURN PATH (EMAIL)</label>
+            <input
+              id="sre-email"
+              name="email"
+              type="email"
+              class="comms__input"
+              placeholder="user@domain.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="comms__field">
+            <label class="comms__label" for="sre-message">PAYLOAD (MESSAGE)</label>
+            <textarea
+              id="sre-message"
+              name="message"
+              class="comms__input comms__textarea"
+              placeholder="Type your message here..."
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="comms__submit">
+            <span aria-hidden="true">►</span> SEND REQUEST
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SRE Footer -->
+<footer class="sre-footer">
+  <div class="sre-footer__container">
+    <p class="sre-footer__tagline">Built with 100% Declarative IaC principles.</p>
+
+    <nav class="sre-footer__social" aria-label="Social links">
+      {
+        socialLinks.map((link) => {
+          const platform = link.data.platform.toLowerCase();
+          return (
+            <a
+              href={link.data.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sre-footer__social-link"
+              aria-label={`Visit ${link.data.platform} profile`}
+            >
+              {platform === 'github' && (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+              )}
+              {platform === 'linkedin' && (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              )}
+              {platform !== 'github' && platform !== 'linkedin' && link.data.platform}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <p class="sre-footer__copy">
+      &copy; {currentYear} INFRA.CORE.PORT:IO // ALL SYSTEMS GO
+    </p>
+  </div>
+</footer>
+
+<style>
+  /* ===== Contact section ===== */
+  .comms {
+    background-color: var(--sre-bg);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--sre-border);
+  }
+
+  .comms__container {
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+
+  .comms__card {
+    background-color: var(--sre-surface);
+    border: 1px solid var(--sre-border);
+    border-radius: 0.75rem;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Left */
+  .comms__title {
+    font-family: var(--sre-mono);
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--sre-text);
+    margin-bottom: 1rem;
+  }
+
+  .comms__description {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--sre-muted-bright);
+    margin-bottom: 1.75rem;
+    max-width: 28rem;
+  }
+
+  .comms__info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .comms__info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--sre-muted-bright);
+  }
+
+  .comms__info-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(37, 99, 235, 0.12);
+    border: 1px solid var(--sre-border-bright);
+    border-radius: 0.375rem;
+    color: var(--sre-primary);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .comms__info-link {
+    color: var(--sre-muted-bright);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .comms__info-link:hover {
+    color: var(--sre-cyan);
+  }
+
+  /* Form */
+  .comms__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .comms__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .comms__label {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--sre-muted);
+  }
+
+  .comms__input {
+    width: 100%;
+    background-color: var(--sre-card);
+    border: 1px solid var(--sre-border);
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    font-family: var(--sre-mono);
+    font-size: 0.8125rem;
+    color: var(--sre-text);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+    outline: none;
+  }
+
+  .comms__input::placeholder {
+    color: var(--sre-muted);
+  }
+
+  .comms__input:focus {
+    border-color: var(--sre-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+
+  .comms__textarea {
+    resize: vertical;
+    min-height: 7rem;
+    line-height: 1.6;
+  }
+
+  .comms__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--sre-primary);
+    color: #ffffff;
+    font-family: var(--sre-mono);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+
+  .comms__submit:hover {
+    background-color: var(--sre-primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .comms__submit:focus-visible {
+    outline: 2px solid var(--sre-primary);
+    outline-offset: 2px;
+  }
+
+  /* ===== SRE Footer ===== */
+  .sre-footer {
+    background-color: var(--sre-bg);
+    border-top: 1px solid var(--sre-border);
+    padding: 1.5rem 2rem;
+  }
+
+  .sre-footer__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sre-footer__tagline,
+  .sre-footer__copy {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    color: var(--sre-muted);
+    letter-spacing: 0.03em;
+  }
+
+  .sre-footer__social {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .sre-footer__social-link {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--sre-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 150ms ease;
+  }
+
+  .sre-footer__social-link:hover {
+    color: var(--sre-text);
+  }
+
+  /* Responsive */
+  @media (max-width: 767px) {
+    .comms__card {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+    }
+
+    .sre-footer__container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

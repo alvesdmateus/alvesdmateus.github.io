@@ -1,0 +1,312 @@
+---
+// No props — content is persona-specific and hardcoded
+---
+
+<section id="whoami" class="hero">
+  <div class="hero__container">
+    <!-- Left: text -->
+    <div class="hero__left">
+      <span class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        AVAILABLE FOR NEW PROJECTS
+      </span>
+
+      <h1 class="hero__headline">
+        Crafting<br />
+        <span class="hero__headline-blue">Premium</span> Mobile<br />
+        Experiences
+      </h1>
+
+      <p class="hero__description">
+        I build high-performance, native-quality mobile applications using Flutter and React Native.
+        Expert in delivering pixel-perfect UI and scalable architecture for iOS and Android.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#projects" class="hero__cta hero__cta--primary">
+          View Portfolio <span aria-hidden="true">→</span>
+        </a>
+        <a href="#stack" class="hero__cta hero__cta--secondary">
+          Technical Stack
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: iPhone mockup -->
+    <div class="hero__right" aria-label="iPhone mockup showing Versado app" role="img">
+      <div class="hero__phone-wrap">
+        <!-- Teal backdrop card -->
+        <div class="hero__phone-backdrop" aria-hidden="true"></div>
+
+        <!-- Phone shell + screen overlay container -->
+        <div class="hero__phone-shell-wrap" aria-hidden="true">
+          <!-- Screen image — sits behind the shell SVG, clipped by border-radius -->
+          <img
+            src="/projects/versado.svg"
+            alt=""
+            class="hero__screen-img"
+          />
+
+          <!--
+            Phone shell SVG.
+            The frame is a single compound path using fill-rule="evenodd":
+            outer rectangle + inner screen rectangle = the frame only, screen is a true transparent hole.
+          -->
+          <svg class="hero__phone-svg" viewBox="0 0 260 520" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="phone-shell" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e293b"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+            </defs>
+
+            <!--
+              Frame compound path (even-odd fill = screen area is a hole).
+              Outer phone: 0,0 260×520 rx=44
+              Screen hole: 16,14 228×492 rx=32
+            -->
+            <path fill-rule="evenodd" fill="url(#phone-shell)"
+              d="M44,0 H216 A44,44 0 0 1 260,44 V476 A44,44 0 0 1 216,520 H44 A44,44 0 0 1 0,476 V44 A44,44 0 0 1 44,0 Z
+                 M48,14 H212 A32,32 0 0 1 244,46 V474 A32,32 0 0 1 212,506 H48 A32,32 0 0 1 16,474 V46 A32,32 0 0 1 48,14 Z"
+            />
+
+            <!-- Outer sheen -->
+            <rect width="260" height="520" rx="44" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+            <!-- Dynamic island -->
+            <rect x="90" y="22" width="80" height="24" rx="12" fill="#0f172a"/>
+
+            <!-- Side buttons -->
+            <rect x="-3" y="120" width="5" height="26" rx="2.5" fill="#1e293b"/>
+            <rect x="-3" y="154" width="5" height="26" rx="2.5" fill="#1e293b"/>
+            <rect x="258" y="140" width="5" height="36" rx="2.5" fill="#1e293b"/>
+
+            <!-- Home indicator -->
+            <rect x="100" y="494" width="60" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 2rem 3rem;
+    background-color: var(--mob-bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle background glow */
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    width: 50%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(13,148,136,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero__container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+  }
+
+  /* ===== Left ===== */
+  .hero__left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--mob-primary);
+    border: 1px solid rgba(37, 99, 235, 0.35);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    width: fit-content;
+  }
+
+  .hero__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--mob-primary);
+    animation: pulse-badge 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero__headline {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--mob-text);
+  }
+
+  .hero__headline-blue {
+    color: var(--mob-primary);
+  }
+
+  .hero__description {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.75;
+    color: var(--mob-muted-bright);
+    max-width: 32rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  }
+
+  .hero__cta--primary {
+    background-color: var(--mob-primary);
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(37, 99, 235, 0.5), 0 0 32px rgba(37, 99, 235, 0.2);
+  }
+
+  .hero__cta--primary:hover {
+    background-color: var(--mob-primary-hover);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.7), 0 0 40px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .hero__cta--secondary {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--mob-text);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero__cta--secondary:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ===== Right: phone ===== */
+  .hero__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero__phone-wrap {
+    position: relative;
+    width: 260px;
+  }
+
+  /* Teal backdrop card behind phone */
+  .hero__phone-backdrop {
+    position: absolute;
+    top: 5%;
+    left: -8%;
+    width: 116%;
+    height: 90%;
+    background: linear-gradient(135deg, var(--mob-teal) 0%, var(--mob-teal-light) 100%);
+    border-radius: 28px;
+    z-index: 0;
+    box-shadow: 0 20px 60px rgba(13, 148, 136, 0.4);
+  }
+
+  /* Shell + screen stacking context */
+  .hero__phone-shell-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    /* Lock aspect ratio to phone viewBox (260 × 520) so % heights work */
+    aspect-ratio: 260 / 520;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.5));
+  }
+
+  /*
+    Screen image — sits behind the SVG shell.
+    Matches the screen hole exactly:
+      x=16  → left: 16/260 = 6.154%
+      y=14  → top:  14/520 = 2.692%
+      w=228 → width:  228/260 = 87.692%
+      h=492 → height: 492/520 = 94.615%
+      rx=32 → 32/228 ≈ 14% horizontal, 32/492 ≈ 6.5% vertical
+  */
+  .hero__screen-img {
+    position: absolute;
+    left: 6.154%;
+    top: 2.692%;
+    width: 87.692%;
+    height: 94.615%;
+    border-radius: 14% / 6.5%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* SVG sits on top, punches transparent hole to reveal the img */
+  .hero__phone-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1023px) {
+    .hero__container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .hero__right {
+      order: -1;
+    }
+
+    .hero__phone-wrap {
+      width: 200px;
+    }
+
+    .hero {
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 6rem;
+    }
+  }
+</style>

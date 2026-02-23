@@ -1,0 +1,37 @@
+---
+import { getCollection, render } from 'astro:content';
+import TimelineItem from './TimelineItem.astro';
+
+const entries = await getCollection('experience');
+
+// Sort by startDate descending (most recent first)
+const sorted = entries.sort(
+  (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime()
+);
+
+// Render markdown body for each entry
+const rendered = await Promise.all(
+  sorted.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+---
+
+<div class="timeline">
+  {
+    rendered.map(({ entry, Content }) => (
+      <TimelineItem
+        role={entry.data.role}
+        company={entry.data.company}
+        companyUrl={entry.data.companyUrl}
+        startDate={entry.data.startDate}
+        endDate={entry.data.endDate}
+        location={entry.data.location}
+        type={entry.data.type}
+      >
+        <Content />
+      </TimelineItem>
+    ))
+  }
+</div>

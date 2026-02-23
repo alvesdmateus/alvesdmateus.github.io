@@ -1,0 +1,121 @@
+---
+import siteData from '@data/site.json';
+---
+
+<div class="contact">
+  <p class="contact__intro">
+    Interested in working together? Feel free to reach out.
+  </p>
+  <form
+    class="contact__form"
+    action={`mailto:${siteData.email}`}
+    method="POST"
+    enctype="text/plain"
+  >
+    <div class="contact__field">
+      <label for="contact-name" class="contact__label">Name</label>
+      <input
+        id="contact-name"
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        class="contact__input"
+      />
+    </div>
+
+    <div class="contact__field">
+      <label for="contact-email" class="contact__label">Email</label>
+      <input
+        id="contact-email"
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="contact__input"
+      />
+    </div>
+
+    <div class="contact__field">
+      <label for="contact-message" class="contact__label">Message</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        required
+        rows="5"
+        class="contact__input contact__textarea"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="contact__submit">Send Message</button>
+  </form>
+</div>
+
+<style>
+  .contact {
+    max-width: 36rem;
+  }
+
+  .contact__intro {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    color: var(--color-text-muted);
+    margin-block-end: var(--spacing-lg);
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .contact__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .contact__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .contact__input {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    transition: border-color var(--transition-fast);
+  }
+
+  .contact__input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+  }
+
+  .contact__textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .contact__submit {
+    align-self: flex-start;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--color-primary);
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+  }
+
+  .contact__submit:hover {
+    background-color: var(--color-primary-hover);
+  }
+</style>

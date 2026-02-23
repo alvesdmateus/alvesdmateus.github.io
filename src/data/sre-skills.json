@@ -1,0 +1,57 @@
+[
+  {
+    "id": "cloud",
+    "category": "Cloud",
+    "icon": "☁",
+    "order": 1,
+    "items": [
+      { "name": "AWS", "score": 5 },
+      { "name": "Azure", "score": 4 },
+      { "name": "GCP", "score": 4 }
+    ]
+  },
+  {
+    "id": "compute",
+    "category": "Compute",
+    "icon": "⊞",
+    "order": 2,
+    "items": [
+      { "name": "Kubernetes", "score": 5 },
+      { "name": "Docker / containerd", "score": 5 },
+      { "name": "Serverless / Lambda", "score": 4 }
+    ]
+  },
+  {
+    "id": "iac",
+    "category": "IaC",
+    "icon": "⚙",
+    "order": 3,
+    "items": [
+      { "name": "Terraform", "score": 5 },
+      { "name": "Ansible / SaltStack", "score": 4 },
+      { "name": "Pulumi", "score": 4 }
+    ]
+  },
+  {
+    "id": "observability",
+    "category": "Observability",
+    "icon": "↗",
+    "order": 4,
+    "items": [
+      { "name": "Grafana", "score": 5 },
+      { "name": "Datadog", "score": 5 },
+      { "name": "OpenTelemetry", "score": 4 }
+    ]
+  },
+  {
+    "id": "networking",
+    "category": "Networking",
+    "icon": "⊟",
+    "order": 5,
+    "items": [
+      { "name": "Istio Service Mesh", "score": 4 },
+      { "name": "NGINX / Envoy", "score": 4 },
+      { "name": "Cilium / eBPF", "score": 3 }
+    ]
+  }
+]

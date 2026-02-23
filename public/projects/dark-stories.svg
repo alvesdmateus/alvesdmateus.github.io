@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 480" width="260" height="480">
+  <defs>
+    <linearGradient id="ds-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#111114"/>
+    </linearGradient>
+    <linearGradient id="ds-card1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a0a"/>
+      <stop offset="100%" stop-color="#0d0505"/>
+    </linearGradient>
+    <linearGradient id="ds-card2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d1a"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </linearGradient>
+    <linearGradient id="ds-card3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#12100a"/>
+      <stop offset="100%" stop-color="#0a0d05"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="260" height="480" fill="url(#ds-bg)"/>
+
+  <!-- Subtle vignette top -->
+  <rect width="260" height="80" fill="rgba(0,0,0,0.4)"/>
+
+  <!-- Status bar -->
+  <text x="20" y="24" font-family="system-ui" font-size="11" fill="rgba(255,255,255,0.4)" font-weight="600">9:41</text>
+  <text x="240" y="24" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="end">●●●</text>
+
+  <!-- Header -->
+  <text x="130" y="54" font-family="system-ui" font-size="15" font-weight="800" fill="rgba(255,255,255,0.85)" text-anchor="middle" letter-spacing="3">DARK STORIES</text>
+  <text x="130" y="70" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.25)" text-anchor="middle" letter-spacing="2">CHOOSE YOUR FATE</text>
+
+  <!-- Thin separator -->
+  <rect x="20" y="78" width="220" height="0.5" fill="rgba(255,255,255,0.07)"/>
+
+  <!-- Story card 1 — The Haunting (featured, larger) -->
+  <rect x="20" y="90" width="220" height="110" rx="10" fill="url(#ds-card1)" stroke="rgba(180,20,20,0.3)" stroke-width="1"/>
+  <!-- Decorative moon/atmosphere -->
+  <circle cx="195" cy="130" r="28" fill="rgba(180,20,20,0.06)"/>
+  <circle cx="195" cy="130" r="18" fill="rgba(180,20,20,0.08)"/>
+  <!-- Candle flicker shapes -->
+  <ellipse cx="48" cy="150" rx="4" ry="10" fill="rgba(255,140,0,0.15)"/>
+  <ellipse cx="48" cy="144" rx="2" ry="5" fill="rgba(255,180,0,0.2)"/>
+  <!-- Story label -->
+  <rect x="30" y="100" width="50" height="14" rx="3" fill="rgba(180,20,20,0.35)"/>
+  <text x="55" y="111" font-family="system-ui" font-size="8" fill="rgba(255,100,100,0.9)" text-anchor="middle" font-weight="700" letter-spacing="1">HORROR</text>
+  <!-- Title -->
+  <text x="30" y="132" font-family="system-ui" font-size="14" font-weight="800" fill="rgba(255,255,255,0.9)">The Haunting</text>
+  <text x="30" y="148" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.35)">A family moves into their dream home...</text>
+  <!-- Chapter indicator -->
+  <text x="30" y="186" font-family="system-ui" font-size="8" fill="rgba(255,255,255,0.2)">Chapter 1 of 6  ·  12 min read</text>
+  <!-- Unlock icon -->
+  <circle cx="222" cy="140" r="12" fill="rgba(180,20,20,0.2)" stroke="rgba(180,20,20,0.4)" stroke-width="1"/>
+  <text x="222" y="145" font-family="system-ui" font-size="13" text-anchor="middle" fill="rgba(255,100,100,0.8)">▶</text>
+
+  <!-- Story card 2 — Locked -->
+  <rect x="20" y="212" width="104" height="82" rx="8" fill="url(#ds-card2)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="30" y="222" width="36" height="11" rx="3" fill="rgba(60,80,200,0.35)"/>
+  <text x="48" y="231" font-family="system-ui" font-size="7" fill="rgba(130,150,255,0.8)" text-anchor="middle" font-weight="700" letter-spacing="1">THRILLER</text>
+  <text x="30" y="250" font-family="system-ui" font-size="11" font-weight="700" fill="rgba(255,255,255,0.75)">The Signal</text>
+  <text x="30" y="263" font-family="system-ui" font-size="8" fill="rgba(255,255,255,0.25)">A strange broadcast...</text>
+  <!-- Lock -->
+  <text x="106" y="286" font-family="system-ui" font-size="14" fill="rgba(255,255,255,0.15)" text-anchor="end">🔒</text>
+
+  <!-- Story card 3 — Locked -->
+  <rect x="136" y="212" width="104" height="82" rx="8" fill="url(#ds-card3)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="146" y="222" width="44" height="11" rx="3" fill="rgba(80,120,30,0.35)"/>
+  <text x="168" y="231" font-family="system-ui" font-size="7" fill="rgba(130,200,80,0.8)" text-anchor="middle" font-weight="700" letter-spacing="1">MYSTERY</text>
+  <text x="146" y="250" font-family="system-ui" font-size="11" font-weight="700" fill="rgba(255,255,255,0.75)">The Witness</text>
+  <text x="146" y="263" font-family="system-ui" font-size="8" fill="rgba(255,255,255,0.25)">She saw everything...</text>
+  <text x="222" y="286" font-family="system-ui" font-size="14" fill="rgba(255,255,255,0.15)" text-anchor="end">🔒</text>
+
+  <!-- Divider -->
+  <rect x="20" y="306" width="220" height="0.5" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Player profile strip -->
+  <text x="20" y="326" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.25)" letter-spacing="1">YOUR PROFILE</text>
+
+  <!-- XP bar -->
+  <text x="20" y="346" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.4)">Stories read</text>
+  <text x="240" y="346" font-family="system-ui" font-size="9" fill="rgba(180,20,20,0.9)" text-anchor="end" font-weight="700">3 / 12</text>
+  <rect x="20" y="352" width="220" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="20" y="352" width="55" height="5" rx="2.5" fill="rgba(180,20,20,0.7)"/>
+
+  <!-- Streak + achievements row -->
+  <text x="20" y="380" font-family="system-ui" font-size="22">🕯️</text>
+  <text x="46" y="374" font-family="system-ui" font-size="11" font-weight="700" fill="rgba(255,255,255,0.7)">4-day streak</text>
+  <text x="46" y="386" font-family="system-ui" font-size="9" fill="rgba(255,255,255,0.25)">Keep the candle burning</text>
+
+  <!-- Featured unlock CTA -->
+  <rect x="20" y="400" width="220" height="34" rx="8" fill="rgba(180,20,20,0.2)" stroke="rgba(180,20,20,0.4)" stroke-width="1"/>
+  <text x="130" y="422" font-family="system-ui" font-size="12" font-weight="700" fill="rgba(255,100,100,0.9)" text-anchor="middle">Unlock Full Collection</text>
+
+  <!-- Bottom nav -->
+  <rect y="452" width="260" height="28" fill="rgba(0,0,0,0.5)"/>
+  <text x="40" y="472" font-family="system-ui" font-size="13" fill="rgba(180,20,20,0.9)" text-anchor="middle">📚</text>
+  <text x="100" y="472" font-family="system-ui" font-size="13" fill="rgba(255,255,255,0.2)" text-anchor="middle">🔍</text>
+  <text x="160" y="472" font-family="system-ui" font-size="13" fill="rgba(255,255,255,0.2)" text-anchor="middle">👤</text>
+  <text x="220" y="472" font-family="system-ui" font-size="13" fill="rgba(255,255,255,0.2)" text-anchor="middle">⚙</text>
+  <!-- Active dot -->
+  <circle cx="40" cy="450" r="2" fill="rgba(180,20,20,0.8)"/>
+</svg>

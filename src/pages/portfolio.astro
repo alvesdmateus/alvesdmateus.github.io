@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import Section from '@components/Section.astro';
+import About from '@components/About.astro';
+import ExperienceTimeline from '@components/ExperienceTimeline.astro';
+import ProjectGrid from '@components/ProjectGrid.astro';
+import SkillGroup from '@components/SkillGroup.astro';
+import ContactForm from '@components/ContactForm.astro';
+---
+
+<BaseLayout
+  title="Mateus Alves — Software Engineer"
+  description="Portfolio of Mateus Alves — Software Engineer building reliable, well-crafted software."
+>
+  <Hero />
+
+  <Section id="about" title="About">
+    <About />
+  </Section>
+
+  <Section id="experience" title="Experience">
+    <ExperienceTimeline />
+  </Section>
+
+  <Section id="projects" title="Projects">
+    <ProjectGrid />
+  </Section>
+
+  <Section id="skills" title="Skills">
+    <SkillGroup />
+  </Section>
+
+  <Section id="contact" title="Contact">
+    <ContactForm />
+  </Section>
+</BaseLayout>

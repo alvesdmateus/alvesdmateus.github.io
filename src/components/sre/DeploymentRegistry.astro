@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import DeploymentCard from './DeploymentCard.astro';
+
+const allProjects = await getCollection('projects');
+const sreProjects = allProjects
+  .filter((p) => p.data.portfolioPath === 'sre')
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+---
+
+<section id="clusters" class="registry">
+  <div class="registry__container">
+    <div class="registry__header">
+      <h2 class="registry__title">
+        <span class="registry__title-icon" aria-hidden="true">☁</span>
+        DEPLOYMENT REGISTRY
+      </h2>
+      <p class="registry__subtitle">Select environments and infrastructure architectures.</p>
+    </div>
+
+    <div class="registry__grid">
+      {
+        sreProjects.map((project) => (
+          <DeploymentCard
+            title={project.data.title}
+            description={project.data.description}
+            techStack={project.data.techStack}
+            provider={project.data.provider}
+            image={project.data.image}
+            liveUrl={project.data.liveUrl}
+            repoUrl={project.data.repoUrl}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .registry {
+    background-color: var(--sre-bg);
+    padding: 5rem 2rem;
+  }
+
+  .registry__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .registry__title {
+    font-family: var(--sre-mono);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--sre-text);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .registry__title-icon {
+    color: var(--sre-primary);
+  }
+
+  .registry__subtitle {
+    font-size: 0.875rem;
+    color: var(--sre-muted);
+    margin-top: 0.25rem;
+  }
+
+  .registry__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1023px) {
+    .registry__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .registry__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+
+const skillGroups = await getCollection('skills');
+---
+
+<div class="skills">
+  {
+    skillGroups.map((group) => (
+      <div class="skills__group">
+        <h3 class="skills__category">{group.data.category}</h3>
+        <ul class="skills__list" role="list">
+          {group.data.items.map((item) => (
+            <li class="skills__item">{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: var(--spacing-lg);
+  }
+
+  .skills__category {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-block-end: var(--spacing-sm);
+  }
+
+  .skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .skills__item {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,227 @@
+---
+import { getCollection, render } from 'astro:content';
+
+const allExperience = await getCollection('experience');
+const sreExperience = allExperience
+  .filter((e) => e.data.portfolioPath === 'sre')
+  .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+
+function formatYear(date: Date): string {
+  return date.getFullYear().toString();
+}
+
+const renderedEntries = await Promise.all(
+  sreExperience.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+---
+
+<section class="branching">
+  <div class="branching__container">
+    <h2 class="branching__title">
+      <span class="branching__title-icon" aria-hidden="true">⇅</span>
+      CAREER BRANCHING
+    </h2>
+
+    <ol class="branching__timeline" role="list">
+      {
+        renderedEntries.map(({ entry, Content }) => {
+          const { role, company, companyUrl, startDate, endDate, location } = entry.data;
+          const startYear = formatYear(startDate);
+          const endLabel = endDate ? formatYear(endDate) : 'PRESENT';
+          const locationLabel = location ? ` // ${location.toUpperCase()}` : '';
+          const dateRange = `${startYear} — ${endLabel}${locationLabel}`;
+
+          return (
+            <li class="branching__item">
+              <div class="branching__marker" aria-hidden="true" />
+              <div class="branching__content">
+                <div class="branching__meta">
+                  <div class="branching__meta-left">
+                    <h3 class="branching__role">{role}</h3>
+                    {companyUrl ? (
+                      <a
+                        href={companyUrl}
+                        class="branching__company"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${company}`}
+                      >
+                        @{company}
+                      </a>
+                    ) : (
+                      <span class="branching__company">@{company}</span>
+                    )}
+                  </div>
+                  <time class="branching__date" datetime={startDate.toISOString()}>
+                    {dateRange}
+                  </time>
+                </div>
+                <div class="branching__body">
+                  <Content />
+                </div>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .branching {
+    background-color: var(--sre-bg);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--sre-border);
+  }
+
+  .branching__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .branching__title {
+    font-family: var(--sre-mono);
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--sre-text);
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .branching__title-icon {
+    color: var(--sre-primary);
+  }
+
+  /* Timeline */
+  .branching__timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Vertical connecting line */
+  .branching__timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4375rem;
+    top: 0.625rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--sre-primary) 0%,
+      rgba(37, 99, 235, 0.2) 70%,
+      transparent 100%
+    );
+  }
+
+  .branching__item {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 1.25rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .branching__item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Dot marker */
+  .branching__marker {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    background-color: var(--sre-primary);
+    border: 2px solid var(--sre-bg);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+
+  .branching__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .branching__meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .branching__meta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .branching__role {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--sre-text);
+    line-height: 1.3;
+  }
+
+  .branching__company {
+    font-family: var(--sre-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--sre-cyan);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  a.branching__company:hover {
+    color: #ffffff;
+  }
+
+  .branching__date {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--sre-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+  }
+
+  /* Rendered markdown body */
+  .branching__body {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--sre-muted-bright);
+  }
+
+  :global(.branching__body p) {
+    margin: 0;
+  }
+
+  :global(.branching__body p + p) {
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .branching__date {
+      white-space: normal;
+    }
+  }
+</style>

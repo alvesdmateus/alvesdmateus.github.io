@@ -1,0 +1,246 @@
+---
+const points = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`,
+    title: 'Offline-First Architecture',
+    body: 'Every app I build starts with the assumption that connectivity is unreliable. Local-first data models with seamless sync keep users productive regardless of network state.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2.05v2.02c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93v2.02c5.05-.5 9-4.76 9-9.95S18.05 2.55 13 2.05zM11 2.05C5.95 2.55 2 6.81 2 12s3.95 9.45 9 9.95v-2.02C7.05 19.44 4 16.08 4 12s3.05-7.44 7-7.93V2.05zM12 8l-4 4h3v4h2v-4h3l-4-4z"/></svg>`,
+    title: '60 FPS, Always',
+    body: 'Smooth animation is non-negotiable. I profile every interaction, keep render trees shallow, and leverage platform-native primitives so the UI never drops a frame.',
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>`,
+    title: 'Security by Design',
+    body: 'Biometric authentication, encrypted local storage, and certificate pinning are built-in from day one — not bolted on after launch.',
+  },
+];
+
+const metrics = [
+  { label: 'TypeScript', value: '3 / 3', pct: 100, color: 'var(--mob-primary)' },
+  { label: 'Expo + React Native', value: '3 / 3', pct: 100, color: 'var(--mob-teal)' },
+  { label: 'Backend-Connected', value: '2 / 3', pct: 67, color: '#a78bfa' },
+];
+---
+
+<section id="philosophy" class="philosophy">
+  <div class="philosophy__container">
+    <!-- Left: text -->
+    <div class="philosophy__left">
+      <span class="philosophy__eyebrow">PHILOSOPHY</span>
+      <h2 class="philosophy__title">Mobile-First,<br />Always.</h2>
+
+      <ul class="philosophy__points" role="list">
+        {
+          points.map((pt) => (
+            <li class="philosophy__point">
+              <span class="philosophy__point-icon" aria-hidden="true" set:html={pt.icon} />
+              <div>
+                <strong class="philosophy__point-title">{pt.title}</strong>
+                <p class="philosophy__point-body">{pt.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Right: metrics card -->
+    <div class="philosophy__right">
+      <div class="metrics-card">
+        <h3 class="metrics-card__heading">Project Standards</h3>
+
+        <ul class="metrics-card__list" role="list">
+          {
+            metrics.map((m) => (
+              <li class="metrics-card__item">
+                <div class="metrics-card__row">
+                  <span class="metrics-card__label">{m.label}</span>
+                  <span class="metrics-card__value" style={`color: ${m.color}`}>
+                    {m.value}
+                  </span>
+                </div>
+                <div class="metrics-card__track" role="progressbar" aria-valuenow={m.pct} aria-valuemin={0} aria-valuemax={100}>
+                  <div
+                    class="metrics-card__fill"
+                    style={`width: ${m.pct}%; background-color: ${m.color};`}
+                  />
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- Decorative bottom note -->
+        <p class="metrics-card__note">Across 3 open-source mobile projects on GitHub.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy {
+    background-color: var(--mob-bg);
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--mob-border);
+  }
+
+  .philosophy__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Left */
+  .philosophy__eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--mob-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .philosophy__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--mob-text);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+  }
+
+  .philosophy__points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .philosophy__point {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .philosophy__point-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    color: var(--mob-primary);
+    margin-top: 0.125rem;
+  }
+
+  .philosophy__point-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .philosophy__point-title {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--mob-text);
+    margin-bottom: 0.375rem;
+  }
+
+  .philosophy__point-body {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--mob-muted-bright);
+    margin: 0;
+  }
+
+  /* Right — metrics card */
+  .philosophy__right {
+    position: sticky;
+    top: 5rem;
+  }
+
+  .metrics-card {
+    background-color: var(--mob-card);
+    border: 1px solid var(--mob-border);
+    border-radius: 1rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .metrics-card__heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--mob-text);
+  }
+
+  .metrics-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .metrics-card__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .metrics-card__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .metrics-card__label {
+    font-size: 0.8125rem;
+    color: var(--mob-muted-bright);
+  }
+
+  .metrics-card__value {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .metrics-card__track {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .metrics-card__fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 800ms ease;
+  }
+
+  .metrics-card__note {
+    font-size: 0.6875rem;
+    color: var(--mob-muted);
+    border-top: 1px solid var(--mob-border);
+    padding-top: 1rem;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .philosophy__container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .philosophy__right {
+      position: static;
+    }
+  }
+</style>

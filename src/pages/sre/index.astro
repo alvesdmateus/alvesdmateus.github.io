@@ -1,0 +1,21 @@
+---
+import SRELayout from '@layouts/SRELayout.astro';
+import SREHero from '@components/sre/SREHero.astro';
+import SREStats from '@components/sre/SREStats.astro';
+import TechnicalInventory from '@components/sre/TechnicalInventory.astro';
+import DeploymentRegistry from '@components/sre/DeploymentRegistry.astro';
+import CareerBranching from '@components/sre/CareerBranching.astro';
+import CommunicationPort from '@components/sre/CommunicationPort.astro';
+---
+
+<SRELayout
+  title="SRE Portfolio — Mateus Alves"
+  description="Site Reliability Engineer portfolio: Kubernetes orchestration, Terraform, Service Mesh architecture, and declarative Infrastructure as Code."
+>
+  <SREHero />
+  <SREStats />
+  <TechnicalInventory />
+  <DeploymentRegistry />
+  <CareerBranching />
+  <CommunicationPort />
+</SRELayout>

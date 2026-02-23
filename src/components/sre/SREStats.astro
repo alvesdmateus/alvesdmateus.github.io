@@ -1,0 +1,117 @@
+---
+const stats = [
+  {
+    label: 'Years of Experience',
+    value: '7',
+    indicator: 'SRE · DevOps',
+    indicatorColor: 'cyan',
+  },
+  {
+    label: 'Cloud Platforms',
+    value: '3',
+    indicator: 'AWS · Azure · GCP',
+    indicatorColor: 'cyan',
+  },
+  {
+    label: 'Technologies',
+    value: '15',
+    indicator: 'In skills inventory',
+    indicatorColor: 'green',
+  },
+  {
+    label: 'Companies',
+    value: '3',
+    indicator: 'TOTVS · Itaú · dentsu',
+    indicatorColor: 'green',
+  },
+] as const;
+---
+
+<section class="stats" aria-label="Infrastructure metrics">
+  <div class="stats__container">
+    {
+      stats.map((stat) => (
+        <div class="stats__card">
+          <span class="stats__label">{stat.label}</span>
+          <div class="stats__row">
+            <span class="stats__value">{stat.value}</span>
+            <span class={`stats__indicator stats__indicator--${stat.indicatorColor}`}>
+              {stat.indicator}
+            </span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .stats {
+    background-color: var(--sre-bg);
+    padding: 0 2rem 4rem;
+  }
+
+  .stats__container {
+    max-width: 72rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .stats__card {
+    background-color: var(--sre-card);
+    border: 1px solid var(--sre-border);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stats__label {
+    font-family: var(--sre-mono);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--sre-muted);
+    text-transform: uppercase;
+  }
+
+  .stats__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .stats__value {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--sre-text);
+    line-height: 1;
+  }
+
+  .stats__indicator {
+    font-family: var(--sre-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+  }
+
+  .stats__indicator--green { color: var(--sre-green); }
+  .stats__indicator--cyan { color: var(--sre-cyan); }
+  .stats__indicator--yellow { color: var(--sre-yellow); }
+
+  @media (max-width: 767px) {
+    .stats__container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .stats__container {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
