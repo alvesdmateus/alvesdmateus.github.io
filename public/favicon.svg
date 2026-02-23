@@ -9,15 +9,12 @@
   <circle cx="36" cy="26" r="4" fill="#f59e0b"/>
   <circle cx="48" cy="26" r="4" fill="#22c55e"/>
   <!-- Prompt chevron -->
-  <polyline points="24,58 38,70 24,82" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="24,58 38,70 24,82"/>
   <!-- Cursor line -->
-  <rect x="48" y="64" width="40" height="6" rx="3"/>
+  <rect class="cursor" x="48" y="64" width="40" height="6" rx="3"/>
   <style>
-    rect, polyline { stroke: none; fill: #000; }
-    polyline { fill: none; stroke: #000; }
-    @media (prefers-color-scheme: dark) {
-      rect { fill: #fff; }
-      polyline { stroke: #fff; }
-    }
+    rect { fill: #1e1e2e; }
+    polyline { fill: none; stroke: #a6e3a1; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    .cursor { fill: #a6e3a1; }
   </style>
 </svg>
