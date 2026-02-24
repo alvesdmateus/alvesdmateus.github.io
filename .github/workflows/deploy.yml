@@ -28,10 +28,10 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Bump patch version
+      - name: Bump minor version
         run: |
           CURRENT=$(jq -r .version package.json)
-          NEW=$(echo "$CURRENT" | awk -F. '{print $1"."$2"."$3+1}')
+          NEW=$(echo "$CURRENT" | awk -F. '{print $1"."$2+1".0"}')
           jq --arg v "$NEW" '.version = $v' package.json > tmp.json && mv tmp.json package.json
           echo "VERSION=$NEW" >> "$GITHUB_ENV"
 
@@ -61,13 +61,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Bump patch version
+      - name: Bump minor version
         run: |
           CURRENT=$(jq -r .version package.json)
-          NEW=$(echo "$CURRENT" | awk -F. '{print $1"."$2"."$3+1}')
+          NEW=$(echo "$CURRENT" | awk -F. '{print $1"."$2+1".0"}')
           jq --arg v "$NEW" '.version = $v' package.json > tmp.json && mv tmp.json package.json
           echo "VERSION=v$NEW" >> "$GITHUB_ENV"
 
