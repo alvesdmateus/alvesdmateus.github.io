@@ -15,7 +15,7 @@ const allSkillsFlat = sreSkills
 <section id="stack" class="inventory">
   <div class="inventory__container">
     <!-- Header row -->
-    <div class="inventory__header">
+    <div class="inventory__header" data-reveal>
       <div>
         <h2 class="inventory__title">
           <span class="inventory__title-icon" aria-hidden="true">✦</span>
@@ -38,8 +38,8 @@ const allSkillsFlat = sreSkills
       <!-- GRID -->
       <div class="inventory__grid" data-view-panel="grid">
         {
-          sreSkills.map((cat) => (
-            <div class="inv-col">
+          sreSkills.map((cat, i) => (
+            <div class="inv-col" data-reveal data-reveal-delay={i}>
               <h3 class="inv-col__header">
                 <span class="inv-col__num">0{cat.order}.</span> {cat.category.toUpperCase()}
               </h3>

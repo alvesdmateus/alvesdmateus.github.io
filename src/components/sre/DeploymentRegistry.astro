@@ -10,7 +10,7 @@ const sreProjects = allProjects
 
 <section id="clusters" class="registry">
   <div class="registry__container">
-    <div class="registry__header">
+    <div class="registry__header" data-reveal>
       <h2 class="registry__title">
         <span class="registry__title-icon" aria-hidden="true">☁</span>
         DEPLOYMENT REGISTRY
@@ -20,7 +20,7 @@ const sreProjects = allProjects
 
     <div class="registry__grid">
       {
-        sreProjects.map((project) => (
+        sreProjects.map((project, i) => (
           <DeploymentCard
             title={project.data.title}
             description={project.data.description}
@@ -29,6 +29,8 @@ const sreProjects = allProjects
             image={project.data.image}
             liveUrl={project.data.liveUrl}
             repoUrl={project.data.repoUrl}
+            data-reveal
+            data-reveal-delay={String(i)}
           />
         ))
       }

@@ -30,8 +30,8 @@ const stats = [
 <section class="stats" aria-label="Infrastructure metrics">
   <div class="stats__container">
     {
-      stats.map((stat) => (
-        <div class="stats__card">
+      stats.map((stat, i) => (
+        <div class="stats__card" data-reveal data-reveal-delay={i}>
           <span class="stats__label">{stat.label}</span>
           <div class="stats__row">
             <span class="stats__value">{stat.value}</span>

@@ -15,7 +15,7 @@ const icons: Record<string, string> = {
 <section id="stack" class="proficiency">
   <div class="proficiency__container">
     <!-- Header -->
-    <div class="proficiency__header">
+    <div class="proficiency__header" data-reveal>
       <div class="proficiency__header-left">
         <span class="proficiency__eyebrow">ECOSYSTEM</span>
         <h2 class="proficiency__title">Technical Proficiency</h2>
@@ -27,8 +27,8 @@ const icons: Record<string, string> = {
 
     <!-- Cards -->
     <div class="proficiency__grid">
-      {mobileSkills.map((skill) => (
-        <div class="skill-card">
+      {mobileSkills.map((skill, i) => (
+        <div class="skill-card" data-reveal data-reveal-delay={i}>
           <span class="skill-card__icon" aria-hidden="true" set:html={icons[skill.icon] ?? icons.mobile} />
           <strong class="skill-card__name">{skill.name}</strong>
           <span class="skill-card__subtitle">{skill.subtitle}</span>

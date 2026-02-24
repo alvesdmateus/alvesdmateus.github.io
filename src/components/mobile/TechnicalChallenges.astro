@@ -12,7 +12,7 @@ const accents = ['var(--mob-primary)', 'var(--mob-teal)', '#a78bfa'];
 
 <section id="challenges" class="challenges">
   <div class="challenges__container">
-    <div class="challenges__header">
+    <div class="challenges__header" data-reveal>
       <span class="challenges__eyebrow">UNDER THE HOOD</span>
       <h2 class="challenges__title">Engineering Challenges</h2>
       <p class="challenges__subtitle">
@@ -22,7 +22,7 @@ const accents = ['var(--mob-primary)', 'var(--mob-teal)', '#a78bfa'];
 
     <ul class="challenges__grid" role="list">
       {challenges.map((project, i) => (
-        <li class="challenge-card" style={`--accent: ${accents[i % accents.length]}`}>
+        <li class="challenge-card" data-reveal data-reveal-delay={i} style={`--accent: ${accents[i % accents.length]}`}>
           <span class="challenge-card__label">{project.data.title}</span>
           <p class="challenge-card__body">{project.data.challenge}</p>
         </li>

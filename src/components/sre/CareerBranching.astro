@@ -20,14 +20,14 @@ const renderedEntries = await Promise.all(
 
 <section class="branching">
   <div class="branching__container">
-    <h2 class="branching__title">
+    <h2 class="branching__title" data-reveal>
       <span class="branching__title-icon" aria-hidden="true">⇅</span>
       CAREER BRANCHING
     </h2>
 
     <ol class="branching__timeline" role="list">
       {
-        renderedEntries.map(({ entry, Content }) => {
+        renderedEntries.map(({ entry, Content }, i) => {
           const { role, company, companyUrl, startDate, endDate, location } = entry.data;
           const startYear = formatYear(startDate);
           const endLabel = endDate ? formatYear(endDate) : 'PRESENT';
@@ -35,7 +35,7 @@ const renderedEntries = await Promise.all(
           const dateRange = `${startYear} — ${endLabel}${locationLabel}`;
 
           return (
-            <li class="branching__item">
+            <li class="branching__item" data-reveal data-reveal-delay={i}>
               <div class="branching__marker" aria-hidden="true" />
               <div class="branching__content">
                 <div class="branching__meta">

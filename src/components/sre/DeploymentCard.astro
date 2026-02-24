@@ -9,7 +9,7 @@ interface Props {
   repoUrl?: string;
 }
 
-const { title, description, techStack, provider = [], image, liveUrl, repoUrl } = Astro.props;
+const { title, description, techStack, provider = [], image, liveUrl, repoUrl, ...attrs } = Astro.props;
 
 const inspectHref = liveUrl ?? repoUrl ?? '#';
 
@@ -25,7 +25,7 @@ const providerColors: Record<string, { bg: string; text: string }> = {
 };
 ---
 
-<article class="card">
+<article class="card" {...attrs}>
   <div class="card__image-wrap">
     {
       image ? (

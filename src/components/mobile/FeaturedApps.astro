@@ -11,7 +11,7 @@ const mobileProjects = allProjects
 <section id="projects" class="featured">
   <div class="featured__container">
     <!-- Header -->
-    <div class="featured__header">
+    <div class="featured__header" data-reveal>
       <span class="featured__eyebrow">PORTFOLIO</span>
       <h2 class="featured__title">Featured Apps</h2>
       <p class="featured__subtitle">
@@ -22,13 +22,15 @@ const mobileProjects = allProjects
     <!-- Grid -->
     <div class="featured__grid">
       {
-        mobileProjects.map((project) => (
+        mobileProjects.map((project, i) => (
           <AppCard
             title={project.data.title}
             description={project.data.description}
             techStack={project.data.techStack}
             image={project.data.image}
             repoUrl={project.data.repoUrl}
+            data-reveal
+            data-reveal-delay={String(i)}
           />
         ))
       }
