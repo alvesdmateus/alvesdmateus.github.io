@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 const navLinks = [
   { label: '/WHOAMI', href: '#whoami' },
   { label: '/STACK', href: '#stack' },
-  { label: '/REGISTRY', href: '#clusters' },
+  { label: '/PROJECTS', href: '#projects' },
   { label: '/CONTACT', href: '#contact' },
 ];
 ---
@@ -27,13 +27,13 @@ const navLinks = [
     <a href="#main-content" class="sr-only focus:not-sr-only">Skip to main content</a>
 
     <header class="sre-header">
-      <a href="/" class="sre-header__logo" aria-label="Back to portfolio selection">
+      <a href="/" class="sre-header__logo" aria-label="Mateus Alves portfolio home">
         <span class="sre-header__logo-icon" aria-hidden="true">⊡</span>
-        <span class="sre-header__logo-text">root@infra-portfolio:~#</span>
+        <span class="sre-header__logo-text">mateus@portfolio:~#</span>
         <span class="sre-header__logo-cursor" aria-hidden="true">_</span>
       </a>
 
-      <nav class="sre-header__nav" aria-label="SRE portfolio navigation">
+      <nav class="sre-header__nav" aria-label="Portfolio navigation">
         <ul class="sre-header__links" role="list">
           {
             navLinks.map((link) => (
@@ -52,14 +52,6 @@ const navLinks = [
           <span class="sre-header__status-dot" aria-hidden="true"></span>
           SYSTEM: HEALTHY
         </span>
-        <a href="/" class="sre-header__grid-icon" aria-label="Back to selector">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
-            <rect x="10" y="1" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
-            <rect x="1" y="10" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
-            <rect x="10" y="10" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
-          </svg>
-        </a>
       </div>
     </header>
 
@@ -79,7 +71,7 @@ const navLinks = [
     --sre-border: rgba(59, 130, 246, 0.12);
     --sre-border-bright: rgba(59, 130, 246, 0.25);
     --sre-text: #e2e8f0;
-    --sre-muted: #64748b;
+    --sre-muted: #94a3b8;
     --sre-muted-bright: #94a3b8;
     --sre-primary: #2563eb;
     --sre-primary-hover: #1d4ed8;

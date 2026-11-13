@@ -5,7 +5,7 @@ techStack: ["TypeScript", "React", "Node.js", "PostgreSQL"]
 repoUrl: "https://github.com/alvesdmateus/tcg-collection-manager"
 challenge: "Designing a flexible data model that normalizes card attributes across vastly different TCG rule systems while keeping search and filtering instant on collections with thousands of cards."
 featured: true
-sortOrder: 1
+sortOrder: 2
 portfolioPath: mobile
 image: "/projects/tcg-manager.svg"
 ---

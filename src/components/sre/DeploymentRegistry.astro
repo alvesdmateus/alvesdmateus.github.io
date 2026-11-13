@@ -4,24 +4,24 @@ import DeploymentCard from './DeploymentCard.astro';
 import Icon from '@components/ui/Icon.astro';
 
 const allProjects = await getCollection('projects');
-const sreProjects = allProjects
-  .filter((p) => p.data.portfolioPath === 'sre')
+const selectedProjects = allProjects
+  .filter((p) => ['flashcard-app', 'tcg-collection-manager', 'home-lab'].includes(p.id))
   .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
 ---
 
-<section id="clusters" class="registry">
+<section id="projects" class="registry">
   <div class="registry__container">
     <div class="registry__header" data-reveal>
       <h2 class="registry__title">
         <span class="registry__title-icon"><Icon name="terminal" size={18} /></span>
-        DEPLOYMENT REGISTRY
+        SELECTED PROJECTS
       </h2>
-      <p class="registry__subtitle">Select environments and infrastructure architectures.</p>
+      <p class="registry__subtitle">Applications and infrastructure I build and maintain.</p>
     </div>
 
     <div class="registry__grid">
       {
-        sreProjects.map((project, i) => (
+        selectedProjects.map((project, i) => (
           <DeploymentCard
             title={project.data.title}
             description={project.data.description}

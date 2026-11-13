@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://alvesdmateus.github.io',
   output: 'static',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !/\/(mobile|sre|portfolio)(\/|$)/.test(new URL(page).pathname) })],
   build: {
     inlineStylesheets: 'auto',
   },
