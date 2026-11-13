@@ -1,68 +1,39 @@
-/**
- * Scroll-reveal — lightweight IntersectionObserver-based reveal animations.
- *
- * Usage:
- *   data-reveal              — marks an element for reveal (fade-up)
- *   data-reveal-delay="1"    — stagger index (each unit adds 100ms delay)
- *   data-reveal-delay="200"  — explicit ms delay (values >= 20 treated as ms)
- *
- * The observer adds the class `is-visible` when the element enters the viewport.
- * CSS handles the actual animation via [data-reveal] / [data-reveal].is-visible rules.
- */
+/** One-shot decorative focal moments. Content itself is always visible without JS. */
+function initDecorativeMotion(): void {
+  const targets = [...document.querySelectorAll<HTMLElement>('[data-motion]')];
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let observer: IntersectionObserver | undefined;
 
-function initScrollReveal(): void {
-  const prefersReducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)',
-  ).matches;
+  const stop = () => {
+    observer?.disconnect();
+    targets.forEach((target) => target.classList.remove('motion-playing'));
+  };
 
-  if (prefersReducedMotion) {
-    document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
-      el.classList.add('is-visible');
-    });
-    return;
-  }
+  const start = () => {
+    stop();
+    if (preference.matches || !('IntersectionObserver' in window)) return;
+    try {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ isIntersecting, target }) => {
+          if (!isIntersecting) return;
+          const el = target as HTMLElement;
+          el.classList.add('motion-playing');
+          observer?.unobserve(el);
+          window.setTimeout(() => el.classList.remove('motion-playing'), 700);
+        });
+      }, { threshold: 0.25 });
+      targets.forEach((target) => observer?.observe(target));
+    } catch {
+      stop();
+    }
+  };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        const el = entry.target as HTMLElement;
-
-        const rawDelay = el.dataset.revealDelay;
-        if (rawDelay) {
-          const num = Number(rawDelay);
-          const delayMs = num < 20 ? num * 100 : num;
-          el.style.transitionDelay = `${delayMs}ms`;
-        }
-
-        el.classList.add('is-visible');
-
-        el.addEventListener(
-          'transitionend',
-          () => {
-            el.style.transitionDelay = '';
-            el.style.willChange = '';
-          },
-          { once: true },
-        );
-
-        observer.unobserve(el);
-      });
-    },
-    {
-      threshold: 0.15,
-      rootMargin: '0px 0px -60px 0px',
-    },
-  );
-
-  document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
-    observer.observe(el);
-  });
+  preference.addEventListener('change', start);
+  start();
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  document.addEventListener('DOMContentLoaded', initDecorativeMotion, { once: true });
 } else {
-  initScrollReveal();
+  initDecorativeMotion();
 }

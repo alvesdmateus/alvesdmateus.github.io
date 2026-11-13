@@ -84,17 +84,16 @@ const accents = ['var(--mob-primary)', 'var(--mob-teal)', '#a78bfa'];
   .challenge-card {
     background-color: var(--mob-card);
     border: 1px solid var(--mob-border);
-    border-top: 3px solid var(--accent);
+    border-top: 1px solid var(--accent);
     border-radius: 0.75rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
-    transition: border-color 200ms ease, transform 200ms ease;
+    transition: border-color var(--motion-state);
   }
 
   .challenge-card:hover {
-    transform: translateY(-2px);
     border-color: var(--accent);
     border-top-color: var(--accent);
   }

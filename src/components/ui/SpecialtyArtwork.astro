@@ -1,0 +1,187 @@
+---
+interface Props { kind: 'mobile' | 'sre' }
+const { kind } = Astro.props;
+---
+<style>
+  .selector__illustration-svg {
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+</style>
+{kind === 'mobile' ? (
+<svg viewBox="0 0 320 240" width="320" height="240" xmlns="http://www.w3.org/2000/svg" class="selector__illustration-svg">
+            <defs>
+              <radialGradient id="mob-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3b6cc2" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#3b6cc2" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Radial glow behind phone -->
+            <ellipse cx="190" cy="120" rx="115" ry="108" fill="url(#mob-glow)"/>
+
+            <!-- Glowing card / highlight area -->
+            <rect x="128" y="28" width="120" height="188" rx="18"
+                  fill="#0f2040" stroke="rgba(59,130,246,0.22)" stroke-width="1.5"
+                  />
+
+            <!-- Phone body -->
+            <rect x="142" y="38" width="92" height="168" rx="14"
+                  fill="#111e33" stroke="rgba(99,150,220,0.25)" stroke-width="1"/>
+
+            <!-- Speaker pill (top) -->
+            <rect x="171" y="50" width="34" height="5" rx="2.5" fill="rgba(148,163,184,0.25)"/>
+
+            <!-- Camera dot -->
+            <circle cx="212" cy="52" r="3" fill="rgba(148,163,184,0.2)" stroke="rgba(148,163,184,0.15)" stroke-width="0.75"/>
+
+            <!-- Screen -->
+            <rect x="150" y="64" width="76" height="112" rx="6" fill="#1a56db"/>
+
+            <!-- Screen content — app grid icons (3×3 grid of rounded squares) -->
+            <g fill="rgba(255,255,255,0.18)">
+              <!-- Row 1 -->
+              <rect x="157" y="72" width="18" height="18" rx="4"/>
+              <rect x="179" y="72" width="18" height="18" rx="4"/>
+              <rect x="201" y="72" width="18" height="18" rx="4"/>
+              <!-- Row 2 -->
+              <rect x="157" y="95" width="18" height="18" rx="4"/>
+              <rect x="179" y="95" width="18" height="18" rx="4"/>
+              <rect x="201" y="95" width="18" height="18" rx="4"/>
+              <!-- Row 3 (partial — bottom shelf) -->
+              <rect x="157" y="118" width="18" height="18" rx="4"/>
+              <rect x="179" y="118" width="18" height="18" rx="4"/>
+              <rect x="201" y="118" width="18" height="18" rx="4"/>
+            </g>
+
+            <!-- Status bar line (top of screen) -->
+            <rect x="150" y="64" width="76" height="10" rx="0" fill="rgba(0,0,0,0.2)"/>
+            <rect x="150" y="64" width="76" height="10" rx="6" fill="rgba(0,0,0,0.1)"/>
+
+            <!-- Dock area (below app grid) -->
+            <rect class="artwork-dock" x="157" y="145" width="62" height="22" rx="6" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
+            <g fill="rgba(255,255,255,0.2)">
+              <rect x="162" y="150" width="10" height="10" rx="3"/>
+              <rect x="177" y="150" width="10" height="10" rx="3"/>
+              <rect x="192" y="150" width="10" height="10" rx="3"/>
+            </g>
+
+            <!-- Home indicator bar -->
+            <rect x="168" y="175" width="40" height="3" rx="1.5" fill="rgba(148,163,184,0.3)"/>
+
+            <!-- Side buttons (volume) -->
+            <rect x="141" y="82" width="2.5" height="14" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+            <rect x="141" y="100" width="2.5" height="14" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+            <!-- Power button -->
+            <rect x="232.5" y="90" width="2.5" height="18" rx="1.25" fill="rgba(148,163,184,0.2)"/>
+
+            <!-- Small decorative dots (left side of illustration) -->
+            <g fill="rgba(59,130,246,0.18)">
+              <circle cx="60" cy="70" r="3"/>
+              <circle cx="75" cy="90" r="2"/>
+              <circle cx="50" cy="110" r="2.5"/>
+              <circle cx="85" cy="130" r="1.5"/>
+              <circle cx="65" cy="155" r="3"/>
+            </g>
+            <!-- Horizontal accent lines (left) -->
+            <g stroke="rgba(59,130,246,0.1)" stroke-width="1">
+              <line x1="40" y1="78" x2="110" y2="78"/>
+              <line x1="40" y1="120" x2="110" y2="120"/>
+              <line x1="40" y1="162" x2="110" y2="162"/>
+            </g>
+          </svg>
+) : (
+<svg viewBox="0 0 320 240" width="320" height="240" xmlns="http://www.w3.org/2000/svg" class="selector__illustration-svg">
+            <defs>
+              <radialGradient id="sre-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#2d5299" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#2d5299" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Radial glow -->
+            <ellipse cx="138" cy="120" rx="120" ry="108" fill="url(#sre-glow)"/>
+
+            <!-- Glowing card (terminal window) -->
+            <rect x="32" y="36" width="210" height="168" rx="8"
+                  fill="#0d1117" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+
+            <!-- Terminal title bar -->
+            <rect x="32" y="36" width="210" height="22" rx="8" fill="#161b22"/>
+            <rect x="32" y="47" width="210" height="11" fill="#161b22"/>
+            <!-- Traffic light dots -->
+            <circle cx="50" cy="47" r="4" fill="#ef4444" opacity="0.8"/>
+            <circle cx="63" cy="47" r="4" fill="#f59e0b" opacity="0.8"/>
+            <circle cx="76" cy="47" r="4" fill="#10b981" opacity="0.8"/>
+            <!-- Title text -->
+            <rect x="100" y="43" width="60" height="8" rx="2" fill="rgba(148,163,184,0.12)"/>
+
+            <!-- Terminal content lines -->
+            <!-- Line 1: prompt + command -->
+            <rect x="46" y="72" width="12" height="6" rx="1" fill="rgba(100,116,139,0.5)"/>
+            <rect x="62" y="72" width="80" height="6" rx="1" fill="rgba(226,232,240,0.5)"/>
+
+            <!-- Line 2: key-value (NAME) -->
+            <rect x="46" y="85" width="28" height="6" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="78" y="85" width="55" height="6" rx="1" fill="rgba(6,182,212,0.6)"/>
+
+            <!-- Line 3: key-value (STATUS) -->
+            <rect x="46" y="98" width="34" height="6" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="84" y="98" width="40" height="6" rx="1" fill="rgba(16,185,129,0.7)"/>
+
+            <!-- Line 4: RESOURCES -->
+            <rect x="46" y="112" width="60" height="6" rx="1" fill="rgba(226,232,240,0.35)"/>
+
+            <!-- Lines 5-8: [OK] items -->
+            <g class="artwork-status" fill="rgba(16,185,129,0.6)">
+              <rect x="54" y="124" width="16" height="5" rx="1"/>
+              <rect x="54" y="135" width="16" height="5" rx="1"/>
+              <rect x="54" y="146" width="16" height="5" rx="1"/>
+              <rect x="54" y="157" width="16" height="5" rx="1"/>
+            </g>
+            <g fill="rgba(226,232,240,0.35)">
+              <rect x="74" y="124" width="95" height="5" rx="1"/>
+              <rect x="74" y="135" width="80" height="5" rx="1"/>
+              <rect x="74" y="146" width="72" height="5" rx="1"/>
+              <rect x="74" y="157" width="88" height="5" rx="1"/>
+            </g>
+
+            <!-- Cursor -->
+            <rect x="46" y="172" width="8" height="10" rx="1" fill="rgba(37,99,235,0.8)">
+
+            </rect>
+
+            <!-- Right decorative panel (mini metrics) -->
+            <rect x="255" y="60" width="52" height="120" rx="6"
+                  fill="rgba(13,18,26,0.7)" stroke="rgba(59,130,246,0.12)" stroke-width="1"/>
+
+            <!-- Metric labels + bars -->
+            <rect x="261" y="70" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="78" width="32" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="87" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="87" width="34" height="3" rx="1" fill="rgba(37,99,235,0.7)"/>
+
+            <rect x="261" y="100" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="108" width="28" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="117" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="117" width="36" height="3" rx="1" fill="rgba(16,185,129,0.7)"/>
+
+            <rect x="261" y="130" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="138" width="24" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+            <rect x="261" y="147" width="38" height="3" rx="1" fill="rgba(255,255,255,0.05)"/>
+            <rect x="261" y="147" width="30" height="3" rx="1" fill="rgba(6,182,212,0.65)"/>
+
+            <rect x="261" y="160" width="38" height="4" rx="1" fill="rgba(100,116,139,0.4)"/>
+            <rect x="261" y="168" width="20" height="5" rx="1" fill="rgba(226,232,240,0.6)"/>
+
+            <!-- Decorative dots right -->
+            <g fill="rgba(37,99,246,0.18)">
+              <circle cx="270" cy="194" r="2.5"/>
+              <circle cx="280" cy="200" r="1.5"/>
+              <circle cx="292" cy="196" r="2"/>
+            </g>
+          </svg>
+)}

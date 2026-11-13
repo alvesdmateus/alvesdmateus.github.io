@@ -1,6 +1,7 @@
 ---
 import BaseHead from '@components/BaseHead.astro';
 import '../styles/global.css';
+import PortfolioCursor from '@components/ui/PortfolioCursor.astro';
 
 interface Props {
   title: string;
@@ -10,9 +11,9 @@ interface Props {
 const { title, description } = Astro.props;
 
 const navLinks = [
-  { label: 'Projects',    href: '#projects' },
-  { label: 'Stack',       href: '#stack' },
-  { label: 'Contact',     href: '#contact' },
+  { label: 'Projects',    href: `${Astro.url.pathname.startsWith('/mobile/contact') ? '/mobile/' : ''}#projects` },
+  { label: 'Stack',       href: `${Astro.url.pathname.startsWith('/mobile/contact') ? '/mobile/' : ''}#stack` },
+  { label: 'Contact',     href: `${Astro.url.pathname.startsWith('/mobile/contact') ? '/mobile/' : ''}#contact` },
 ];
 ---
 
@@ -50,7 +51,7 @@ const navLinks = [
 
       <!-- Right: CTA + grid back -->
       <div class="mob-header__right">
-        <a href="/mobile/contact" class="mob-header__hire">Let's talk</a>
+        <a href="/mobile/contact" class="mob-header__hire" data-cursor="open">Let's talk</a>
         <a href="/" class="mob-header__grid-icon" aria-label="Back to selector">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" rx="1" fill="currentColor" opacity="0.6"/>
@@ -66,6 +67,7 @@ const navLinks = [
       <slot />
     </main>
     <script src="../scripts/scroll-reveal.ts"></script>
+    <PortfolioCursor theme="mobile" />
   </body>
 </html>
 
@@ -110,6 +112,7 @@ const navLinks = [
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--mob-border);
   }
+  .mob-header__logo, .mob-header__hire, .mob-header__grid-icon { min-height: var(--control-height); }
 
   /* Logo */
   .mob-header__logo {
@@ -153,6 +156,9 @@ const navLinks = [
     color: var(--mob-muted-bright);
     text-decoration: none;
     padding: 0.375rem 0.75rem;
+    min-height: var(--control-height);
+    display: inline-flex;
+    align-items: center;
     border-radius: 0.375rem;
     transition: color 150ms ease, background-color 150ms ease;
   }
@@ -180,12 +186,12 @@ const navLinks = [
     border-radius: 9999px;
     text-decoration: none;
     transition: background-color 150ms ease, box-shadow 150ms ease;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   }
 
   .mob-header__hire:hover {
     background-color: var(--mob-primary-hover);
-    box-shadow: 0 0 18px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
   }
 
   .mob-header__grid-icon {
@@ -202,8 +208,14 @@ const navLinks = [
   }
 
   @media (max-width: 767px) {
-    .mob-header__nav {
-      display: none;
-    }
+    .mob-header { padding: .5rem var(--page-gutter); flex-wrap: wrap; row-gap: .25rem; }
+    .mob-header__logo { min-height: 2.5rem; }
+    .mob-header__nav { display: flex; order: 3; width: 100%; justify-content: center; }
+    .mob-header__links { justify-content: center; flex-wrap: wrap; }
+    .mob-header__link { padding: .35rem .55rem; font-size: .8rem; }
+  }
+  @media (max-width: 380px) {
+    .mob-header__logo-text { font-size: .8rem; }
+    .mob-header__hire { padding-inline: .7rem; }
   }
 </style>

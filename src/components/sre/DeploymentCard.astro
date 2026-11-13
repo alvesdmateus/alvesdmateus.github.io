@@ -1,4 +1,6 @@
 ---
+import Icon from '@components/ui/Icon.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -32,7 +34,7 @@ const providerColors: Record<string, { bg: string; text: string }> = {
         <img src={image} alt={`${title} architecture diagram`} class="card__image" width="400" height="200" />
       ) : (
         <div class="card__image-placeholder" aria-hidden="true">
-          <span class="card__image-icon">☁</span>
+          <span class="card__image-icon"><Icon name="terminal" size={34} /></span>
         </div>
       )
     }
@@ -102,12 +104,11 @@ const providerColors: Record<string, { bg: string; text: string }> = {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: border-color 250ms ease, transform 250ms ease;
+    transition: border-color var(--motion-state);
   }
 
   .card:hover {
     border-color: var(--sre-border-bright);
-    transform: translateY(-2px);
   }
 
   /* Image */

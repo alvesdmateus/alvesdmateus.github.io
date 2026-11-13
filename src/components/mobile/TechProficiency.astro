@@ -101,12 +101,11 @@ const icons: Record<string, string> = {
     display: flex;
     flex-direction: column;
     gap: 0.625rem;
-    transition: border-color 200ms ease, transform 200ms ease;
+    transition: border-color var(--motion-state);
   }
 
   .skill-card:hover {
     border-color: var(--mob-border-bright);
-    transform: translateY(-2px);
   }
 
   .skill-card__icon {

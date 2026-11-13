@@ -1,6 +1,7 @@
 ---
 import BaseHead from '@components/BaseHead.astro';
 import '../styles/global.css';
+import PortfolioCursor from '@components/ui/PortfolioCursor.astro';
 
 interface Props {
   title: string;
@@ -37,7 +38,7 @@ const navLinks = [
           {
             navLinks.map((link) => (
               <li>
-                <a href={link.href} class="sre-header__link">
+                <a href={link.href} class="sre-header__link" data-cursor="switch">
                   {link.label}
                 </a>
               </li>
@@ -66,6 +67,7 @@ const navLinks = [
       <slot />
     </main>
     <script src="../scripts/sre-init.ts"></script>
+    <PortfolioCursor theme="sre" />
   </body>
 </html>
 
@@ -131,15 +133,8 @@ const navLinks = [
     font-size: 1rem;
   }
 
-  .sre-header__logo-cursor {
-    color: var(--sre-primary);
-    animation: blink 1.2s step-end infinite;
-  }
+  .sre-header__logo-cursor { color: var(--sre-primary); }
 
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
 
   .sre-header__logo:hover .sre-header__logo-text {
     color: #ffffff;
@@ -166,6 +161,9 @@ const navLinks = [
     color: var(--sre-muted);
     text-decoration: none;
     padding: 0.375rem 0.625rem;
+    min-height: var(--control-height);
+    display: inline-flex;
+    align-items: center;
     border-radius: 0.25rem;
     letter-spacing: 0.02em;
     transition: color 150ms ease, background-color 150ms ease;
@@ -202,7 +200,7 @@ const navLinks = [
     height: 6px;
     border-radius: 50%;
     background-color: var(--sre-green);
-    animation: pulse-dot 2s ease-in-out infinite;
+    animation: none;
   }
 
   @keyframes pulse-dot {
@@ -225,13 +223,20 @@ const navLinks = [
 
   /* Hide nav links on small screens */
   @media (max-width: 767px) {
-    .sre-header__nav {
-      display: none;
-    }
+    .sre-header { padding: .5rem var(--page-gutter); flex-wrap: wrap; row-gap: .25rem; }
+    .sre-header__logo { min-height: 2.5rem; }
+    .sre-header__nav { display: flex; order: 3; width: 100%; justify-content: center; }
+    .sre-header__links { justify-content: center; flex-wrap: wrap; }
+    .sre-header__link { padding: .35rem .45rem; font-size: .66rem; }
 
     .sre-header__status {
       font-size: 0.625rem;
       padding: 0.2rem 0.5rem;
     }
+  }
+  @media (max-width: 380px) {
+    .sre-header__logo-text { font-size: .64rem; }
+    .sre-header__status { font-size: .55rem; padding-inline: .35rem; }
+    .sre-header__right { gap: .35rem; }
   }
 </style>

@@ -1,0 +1,55 @@
+/* Shared finishing language, scoped to the two specialty experiences. */
+html[data-theme] {
+  --mob-muted: #9aaac2;
+  --sre-muted: #96a8c1;
+  scrollbar-color: #475974 #0b1121;
+}
+html[data-theme] ::selection { background: #365ca3; color: #fff; }
+html[data-theme] :is(input, textarea) { caret-color: #93c5fd; }
+html[data-theme] :is(h1, h2) { text-wrap: balance; }
+html[data-theme] :is(p, li) { overflow-wrap: break-word; }
+html[data-theme] :is(a, button) { text-underline-offset: .3em; }
+html[data-theme] :is(.hero__container, .hero__left, .hero__right) { min-width: 0; }
+html[data-theme] .hero { padding-inline: var(--page-gutter); }
+html[data-theme] .hero__headline { letter-spacing: -.035em; }
+html[data-theme] .hero__description { max-width: 58ch; }
+html[data-theme] :is(.hero__cta--primary, .mob-header__hire) {
+  box-shadow: 0 5px 16px #0003, inset 0 1px 0 #ffffff24;
+}
+html[data-theme] :is(.hero__cta--primary:hover, .mob-header__hire:hover) {
+  box-shadow: 0 8px 22px #0004, inset 0 1px 0 #ffffff38;
+}
+html[data-theme] :is(.hero__cta, .card__link, .card__star, .app-card__star) {
+  min-height: var(--control-height);
+  display: inline-flex;
+  align-items: center;
+}
+html[data-theme] :is(.app-card, .card):focus-within {
+  border-color: #93c5fd;
+}
+html[data-theme='mobile'] :is(.featured, .proficiency, .challenges) {
+  padding-block: var(--section-space);
+  padding-inline: var(--page-gutter);
+}
+html[data-theme='mobile'] .featured__header { align-items: flex-start; text-align: left; }
+html[data-theme='mobile'] .featured__grid { gap: 1.5rem; }
+html[data-theme='mobile'] .app-card { border-radius: .65rem; }
+html[data-theme='mobile'] .app-card__body { flex: 1; padding: 1.5rem; }
+html[data-theme='mobile'] .app-card__desc { flex: 1; font-size: .875rem; }
+html[data-theme='mobile'] .app-card__screen { background: #101b30; }
+html[data-theme='mobile'] .app-card__title { font-size: 1.2rem; letter-spacing: -.02em; }
+html[data-theme='mobile'] .hero__phone-backdrop { box-shadow: 0 22px 48px #0004; }
+html[data-theme='sre'] .terminal { box-shadow: 0 20px 50px #0004; }
+html[data-theme='sre'] .t-muted { color: #94a3b8; }
+html[data-theme='sre'] .terminal__title { color: #94a3b8; }
+html[data-theme='sre'] .card__title { font-size: 1.1rem; }
+html[data-theme='sre'] .card__description { font-size: .875rem; }
+@media (max-width: 767px) {
+  html[data-theme] { scroll-padding-top: 8rem; }
+  html[data-theme] .hero { padding-top: 9rem; }
+  html[data-theme] .hero__headline { font-size: clamp(2rem, 8.5vw, 3.5rem); }
+  html[data-theme] .hero__ctas { flex-wrap: wrap; }
+  html[data-theme='sre'] .sre-header__logo-text { font-size: clamp(.58rem, 2.5vw, .8rem); }
+  html[data-theme='sre'] .sre-header__status { font-size: .55rem; }
+  html[data-theme='sre'] .sre-header__right { gap: .35rem; }
+}

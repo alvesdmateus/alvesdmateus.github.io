@@ -1,5 +1,6 @@
 @import '@fontsource-variable/space-grotesk';
 @import '@fontsource-variable/fira-code';
+@import './portfolio-polish.css';
 
 /* ===== CSS Reset (Modern Minimal) ===== */
 *,
@@ -12,6 +13,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -74,6 +76,13 @@ ol {
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
+  --section-space: clamp(4.5rem, 9vw, 7.5rem);
+  --page-gutter: clamp(1.25rem, 4vw, 3rem);
+  --control-height: 2.75rem;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-primary, #3b82f6) 35%, transparent);
+  --motion-feedback: 120ms cubic-bezier(.16,1,.3,1);
+  --motion-state: 220ms cubic-bezier(.16,1,.3,1);
+  --motion-focal: 650ms cubic-bezier(.16,1,.3,1);
 }
 
 /* ===== Responsive Breakpoint Adjustments ===== */
@@ -126,25 +135,12 @@ ol {
   outline-offset: 2px;
 }
 
-/* ===== Scroll Reveal ===== */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

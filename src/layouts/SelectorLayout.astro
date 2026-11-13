@@ -1,6 +1,7 @@
 ---
 import BaseHead from '@components/BaseHead.astro';
 import '../styles/global.css';
+import PortfolioCursor from '@components/ui/PortfolioCursor.astro';
 
 interface Props {
   title: string;
@@ -23,6 +24,7 @@ const { title, description } = Astro.props;
     <main id="main-content">
       <slot />
     </main>
+    <PortfolioCursor theme="selector" />
   </body>
 </html>
 
@@ -43,6 +45,7 @@ const { title, description } = Astro.props;
     display: flex;
     align-items: center;
   }
+  .selector-header__logo { min-height: var(--control-height); display: inline-flex; align-items: center; }
 
   .selector-header__logo {
     font-weight: 700;

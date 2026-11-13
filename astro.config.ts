@@ -11,6 +11,8 @@ export default defineConfig({
   vite: {
     build: {
       cssMinify: true,
+      // Keep interaction scripts external to honor script-src 'self'.
+      assetsInlineLimit: 0,
     },
   },
 });
